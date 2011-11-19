@@ -47,6 +47,8 @@ public class RunnerVaadinApplication extends Application
     @Override
     public void init()
     {
+    	//Test
+    	
         ApplicationContext appCtx = new ClassPathXmlApplicationContext("META-INF/spring/application-context.xml");
         queryRepository = appCtx.getBean(JpaOrderQueryRepository.class);
         commandBus = appCtx.getBean(CommandBus.class);
