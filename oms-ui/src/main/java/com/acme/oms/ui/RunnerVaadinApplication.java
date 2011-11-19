@@ -47,7 +47,7 @@ public class RunnerVaadinApplication extends Application
     @Override
     public void init()
     {
-    	//Test
+    	//Test 2
     	
         ApplicationContext appCtx = new ClassPathXmlApplicationContext("META-INF/spring/application-context.xml");
         queryRepository = appCtx.getBean(JpaOrderQueryRepository.class);
@@ -63,6 +63,4 @@ public class RunnerVaadinApplication extends Application
         window.getContent().setSizeFull();
         setMainWindow(window);
     }
-    
-    
 }
