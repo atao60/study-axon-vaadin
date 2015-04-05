@@ -1,29 +1,53 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.acme.oms</groupId>
-  <artifactId>oms-parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <groupId>com.acme.oms</groupId>
+    <artifactId>oms-parent</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <name>oms-parent</name>
+    <name>Order Management System - Parent</name>
 
-  <modules>
-    <module>oms-core</module>
-    <module>oms-ui</module>
-  </modules>
+    <modules>
+        <module>oms-core</module>
+        <module>oms-ui</module>
+    </modules>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+        <jdk.version>1.6</jdk.version>
+        <maven.compiler.source>${jdk.version}</maven.compiler.source>
+        <maven.compiler.target>${jdk.version}</maven.compiler.target>
+        <maven.compiler.compilerVersion>${jdk.version}</maven.compiler.compilerVersion>
+        <maven.compiler.fork>true</maven.compiler.fork>
+        <maven.compiler.verbose>true</maven.compiler.verbose>
+        <maven.compiler.optimize>true</maven.compiler.optimize>
+        <maven.compiler.debug>true</maven.compiler.debug>
+        
+        <web.port>7080</web.port>
+        
+        <jetty.maven.group>org.mortbay.jetty</jetty.maven.group>
+        <jetty.maven.artifact>jetty-maven-plugin</jetty.maven.artifact><!-- maven-jetty-plugin -->
+        <jetty.maven.version>8.1.16.v20140903</jetty.maven.version><!-- 6.1.24 -->
+        
+        <junit.version>4.8.1</junit.version><!-- 4.12 -->
+        <hamcrest.version>1.3</hamcrest.version>
+        <slf4j.version>1.6.1</slf4j.version><!-- 1.7.12 -->
+        <logback.version>1.1.3</logback.version>
+        <hibernate.version>3.4.0.GA</hibernate.version>
+        <hsqldb.version>1.8.0.10</hsqldb.version>
+
+        <spring.version>3.0.5.RELEASE</spring.version>
+        <axon.version>1.3.3</axon.version><!-- 2.4 -->
+        <vaadin.version>6.7.10</vaadin.version>
+        
+    </properties>
+
 </project>

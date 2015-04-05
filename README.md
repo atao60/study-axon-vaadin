@@ -11,3 +11,5 @@ Check out and build info:
 4. Once the build is successful check the application by opening following page on your browser:
 
   >http://localhost:8080/vaadin# study-axon-vaadin
+
+ 
