@@ -1,15 +1,37 @@
-Sample projects for me..
--------
+Sample Axon project
+=====
 
-Tools: eclipse, eclipse maven plugin, eclipse git plugin, git.
+Tools: Eclipse with M2Eclipse, Egit, WikiText, ...
 
-Check out and build info:
+Building
+------
 
-1. Check out the project via Import->Maven->Check out Maven Projects from SCM
-2. Share oms-parent project via Team->share
-3. Build oms-ui via Run As->Maven build by setting goal to "package jetty:run"
-4. Once the build is successful check the application by opening following page on your browser:
-
-  >http://localhost:8080/vaadin# study-axon-vaadin
-
+1. Check out the project:  
+`File > Import... > Git > Projects from Git > Clone URI`
+2. Configure oms-parent project as Maven project:  
+`Configure > Convert to Maven Project`
+3. Import oms-core and oms-ui as Eclipse projects:  
+`Import... > General > Existing Projects into Workspace`
+3. Build oms-parent:  
+`Run as > Maven build...`  
+ and set goal to "package"  
  
+Running
+------
+
+Launch oms-ui:
+
+        Run as > Maven Build... 
+and:
+
+- set goal to "jetty-run"
+- check "Resolve Workspace artifacts"
+ 
+Once the launching is successful, check the application by opening from a browser:
+
+        http://localhost:7080/vaadin
+
+Reference
+------
+
+Original source: [study-axon-vaadin](https://code.google.com/p/study-axon-vaadin/)  
