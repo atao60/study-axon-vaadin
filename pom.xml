@@ -19,6 +19,10 @@
     </modules>
 
     <properties>
+        <web.port>7080</web.port>
+        
+        <!-- JVM Management -->
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -31,15 +35,30 @@
         <maven.compiler.optimize>true</maven.compiler.optimize>
         <maven.compiler.debug>true</maven.compiler.debug>
         
-        <web.port>7080</web.port>
-        
+        <!-- Maven and Plugin Management -->
+        <maven.minimal.version>3.1</maven.minimal.version>
+
         <jetty.maven.group>org.mortbay.jetty</jetty.maven.group>
         <jetty.maven.artifact>jetty-maven-plugin</jetty.maven.artifact><!-- maven-jetty-plugin -->
         <jetty.maven.version>8.1.16.v20140903</jetty.maven.version><!-- 6.1.24 -->
+
+        <build.helper.maven.version>1.9.1</build.helper.maven.version>
+        <enforcer.maven.version>1.4</enforcer.maven.version>
+        <compiler.maven.version>2.5.1</compiler.maven.version>
+        <surefire.maven.version>2.12.4</surefire.maven.version>
+        <jar.maven.version>2.4</jar.maven.version>
+        <clean.maven.version>2.5</clean.maven.version>
+        <install.maven.version>2.4</install.maven.version>
+        <site.maven.version>3.3</site.maven.version>
+        <resources.maven.version>2.6</resources.maven.version>
+        <war.maven.version>2.6</war.maven.version>
+        <deploy.maven.version>2.7</deploy.maven.version>
         
-        <junit.version>4.8.1</junit.version><!-- 4.12 -->
+        <!-- Dependency Management -->
+        
+        <junit.version>4.12</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
-        <slf4j.version>1.6.1</slf4j.version><!-- 1.7.12 -->
+        <slf4j.version>1.7.12</slf4j.version>
         <logback.version>1.1.3</logback.version>
         <hibernate.version>3.4.0.GA</hibernate.version>
         <hsqldb.version>1.8.0.10</hsqldb.version>
@@ -49,5 +68,181 @@
         <vaadin.version>6.7.10</vaadin.version>
         
     </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- required to be be able to put the xtend classes in a separate source folder -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build.helper.maven.version}</version>
+                    <executions>
+                        <execution>
+                            <id>get-maven-version</id>
+                            <goals>
+                                <goal>maven-version</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${enforcer.maven.version}</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-version</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <fail>true</fail>
+                                <rules>
+                                    <requireMavenVersion>
+                                        <version>${maven.minimal.version}</version>
+                                        <message><![CDATA[[ERROR] OLD MAVEN [${maven.version}] in use. 
+                                            Maven ${maven.minimal.version} or newer is required.]]>
+                                        </message>
+                                    </requireMavenVersion>
+                                    <requireJavaVersion>
+                                        <version>${jdk.version}</version>
+                                        <message><![CDATA[[ERROR] OLD JDK [${java.version}] in use. 
+                                            JDK ${jdk.version} or newer is required.]]>
+                                        </message>
+                                    </requireJavaVersion>
+                                    <requirePluginVersions>
+                                        <banLatest>true</banLatest>
+                                        <banRelease>true</banRelease>
+                                        <banSnapshots>true</banSnapshots>
+                                    </requirePluginVersions>
+                                    <bannedDependencies>
+                                        <searchTransitive>true</searchTransitive>
+                                        <excludes>
+                                            <exclude>commons-logging</exclude>
+                                            <exclude>log4j</exclude>
+                                            <exclude>org.apache.logging.log4j</exclude>
+                                        </excludes>
+                                    </bannedDependencies>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${compiler.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${surefire.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${jar.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${clean.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${install.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${site.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${resources.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${deploy.maven.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${war.maven.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    
+    <dependencyManagement>
+        <dependencies>
+        
+        <!-- Main dependencies -->
+        
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-core</artifactId>
+            <version>${axon.version}</version>
+        </dependency>
+        
+        <!-- Persistence -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>               
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+        </dependency>
+        
+        <!-- logs -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- Tests -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-test</artifactId>
+            <version>${axon.version}</version>
+            <scope>test</scope>
+        </dependency>        
+        
+        </dependencies>
+    </dependencyManagement>
 
 </project>
