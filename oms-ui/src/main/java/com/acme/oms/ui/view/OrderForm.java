@@ -1,14 +1,23 @@
 package com.acme.oms.ui.view;
 
+import java.io.Serializable;
+
+import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.commandhandling.gateway.DefaultCommandGateway;
+
+import com.acme.oms.api.CancelOrderCommand;
+import com.acme.oms.api.ConfirmOrderCommand;
+import com.acme.oms.api.CreateOrderCommand;
+import com.acme.oms.ui.data.OrderContainer;
+import com.acme.oms.ui.data.OrderFormBean;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.ui.*;
-import org.axonframework.commandhandling.CommandBus;
-
-import com.acme.oms.ui.data.*;
-import com.acme.oms.api.*;
-
-import java.io.Serializable;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Form;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Window;
 
 /**
  * <p>Form that can be used to create new orders, confirm or cancel existing orders.
@@ -19,15 +28,18 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class OrderForm extends Form implements Button.ClickListener {
+	
     private Button create = new Button("New", (Button.ClickListener) this);
     private Button confirm = new Button("Confirm", (Button.ClickListener) this);
     private Button cancel = new Button("Cancel", (Button.ClickListener) this);
 
-    private CommandBus commandBus;
+//    private CommandBus commandBus;
+    private CommandGateway commandGateway;
     private OrderContainer orderContainer;
 
     public OrderForm(CommandBus commandBus) {
-        this.commandBus = commandBus;
+//        this.commandBus = commandBus;
+    	this.commandGateway = new DefaultCommandGateway(commandBus);
         createAndSetFooter();
     }
 
@@ -89,7 +101,8 @@ public class OrderForm extends Form implements Button.ClickListener {
         setReadOnly(true);
         OrderFormBean order = obtainCreateOrderFormBeanFromDatasource();
         CancelOrderCommand command = new CancelOrderCommand(order.getOrderId());
-        commandBus.dispatch(command);
+//        commandBus.dispatch(command);
+        commandGateway.send(command);
         String message = "Cancel the order with id " + order.getOrderId();
         fireEvent(new FormIsSuccessfullyCommittedEvent(this));
         getApplication().getMainWindow().showNotification(message, Window.Notification.TYPE_TRAY_NOTIFICATION);
@@ -99,7 +112,8 @@ public class OrderForm extends Form implements Button.ClickListener {
         setReadOnly(true);
         OrderFormBean order = obtainCreateOrderFormBeanFromDatasource();
         ConfirmOrderCommand command = new ConfirmOrderCommand(order.getOrderId());
-        commandBus.dispatch(command);
+//        commandBus.dispatch(command);
+        commandGateway.send(command);
         String message = "Confirm the order with id " + order.getOrderId();
         fireEvent(new FormIsSuccessfullyCommittedEvent(this));
         getApplication().getMainWindow().showNotification(message, Window.Notification.TYPE_TRAY_NOTIFICATION);
@@ -114,7 +128,8 @@ public class OrderForm extends Form implements Button.ClickListener {
 
         CreateOrderCommand createCommand = new CreateOrderCommand(order.getOrderId(), order.getProductId());
         String message = "Created new order with id " + order.getOrderId();
-        commandBus.dispatch(createCommand);
+//        commandBus.dispatch(createCommand);
+        commandGateway.send(createCommand);
         
         fireEvent(new FormIsSuccessfullyCommittedEvent(this));
         setReadOnly(true);

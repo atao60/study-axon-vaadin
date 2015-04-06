@@ -10,9 +10,11 @@ import java.util.List;
 /**
  * @author Mustafa Erdogan
  */
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class OrderContainer extends BeanItemContainer<Order> implements Serializable {
-    public static final Object[] NATURAL_COL_ORDER = new Object[]{"orderId", "productId", "status"};
+
+	private static final long serialVersionUID = 1L;
+	public static final Object[] NATURAL_COL_ORDER = new Object[]{"orderId", "productId", "status"};
     public static final String[] COL_HEADERS_ENGLISH = new String[]{"Order Id", "Product Id", "Status"};
 
     private OrderQueryRepository queryRepository;

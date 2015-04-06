@@ -5,4 +5,7 @@ package com.acme.oms.api;
  */
 public class OrderCancelledEvent extends AbstractOrderEvent {
 
+	   public OrderCancelledEvent(String orderId) {
+	    	super(orderId);
+	    }
 }

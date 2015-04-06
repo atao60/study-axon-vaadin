@@ -14,13 +14,13 @@ import org.junit.*;
  */
 public class OrderCommandHandlerTest {
 
-    private FixtureConfiguration fixture;
+    private FixtureConfiguration<Order> fixture;
 
     @Before
     public void setUp() throws Exception {
-        fixture = Fixtures.newGivenWhenThenFixture();
+        fixture = Fixtures.newGivenWhenThenFixture(Order.class);
         OrderCommandHandler commandHandler = new OrderCommandHandler();
-        commandHandler.setOrderRepository(fixture.createGenericRepository(Order.class));
+        commandHandler.setOrderRepository(fixture.getRepository());
         fixture.registerAnnotatedCommandHandler(commandHandler);
     }
 
@@ -28,20 +28,20 @@ public class OrderCommandHandlerTest {
     public void testCreateOrder() {
         fixture.given()
                 .when(new CreateOrderCommand("123", "Chair1"))
-                .expectEvents(new OrderCreatedEvent("Chair1"));
+                .expectEvents(new OrderCreatedEvent("123", "Chair1"));
     }
 
     @Test
     public void testConfirmOrder_Open() {
-        fixture.given(new OrderCreatedEvent("Chair1"))
-                .when(new ConfirmOrderCommand(fixture.getAggregateIdentifier().asString()))
-                .expectEvents(new OrderConfirmedEvent());
+        fixture.given(new OrderCreatedEvent("123", "Chair1"))
+                .when(new ConfirmOrderCommand("123"))
+                .expectEvents(new OrderConfirmedEvent("123"));
     }
 
     @Test
     public void testConfirmOrder_WasAlreadyCancelled() {
-        fixture.given(new OrderCreatedEvent("Chair1"), new OrderCancelledEvent())
-                .when(new ConfirmOrderCommand(fixture.getAggregateIdentifier().asString()))
+        fixture.given(new OrderCreatedEvent("123", "Chair1"), new OrderCancelledEvent("123"))
+                .when(new ConfirmOrderCommand("123"))
                 .expectEvents();
     }
 }

@@ -26,6 +26,8 @@ and:
 
 - set goal to "jetty-run"
 - check "Resolve Workspace artifacts"
+
+>Note. With the option "Resolve Workspace artifacts", no need to package the projects before running "jetty-run".
  
 Once the launching is successful, check the application by opening from a browser:
 

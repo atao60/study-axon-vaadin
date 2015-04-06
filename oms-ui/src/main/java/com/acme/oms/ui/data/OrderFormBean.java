@@ -2,9 +2,11 @@ package com.acme.oms.ui.data;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class OrderFormBean implements Serializable {
-    private String orderId;
+ 
+	private static final long serialVersionUID = 1L;
+	private String orderId;
     private String productId;
     private String status;
 

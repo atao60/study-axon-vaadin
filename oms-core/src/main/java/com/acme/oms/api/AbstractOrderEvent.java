@@ -1,14 +1,17 @@
 package com.acme.oms.api;
 
-import org.axonframework.domain.DomainEvent;
-
 /**
  * @author Allard Buijze
  */
-public abstract class AbstractOrderEvent extends DomainEvent {
+public abstract class AbstractOrderEvent {
 
-    public String getOrderId() {
-        return getAggregateIdentifier().asString();
+   private final String orderId;
+    
+    public AbstractOrderEvent(String orderId) {
+    	this.orderId = orderId;
     }
 
+    public String getOrderId() {
+        return orderId;
+    }
 }

@@ -7,7 +7,8 @@ public class OrderCreatedEvent extends AbstractOrderEvent {
 
     private final String productId;
 
-    public OrderCreatedEvent(String productId) {
+    public OrderCreatedEvent(String orderId, String productId) {
+    	super(orderId);
         this.productId = productId;
     }
 

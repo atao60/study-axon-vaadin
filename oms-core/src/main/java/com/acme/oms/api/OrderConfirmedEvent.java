@@ -5,6 +5,7 @@ package com.acme.oms.api;
  */
 public class OrderConfirmedEvent extends AbstractOrderEvent {
 
-    public OrderConfirmedEvent() {
+    public OrderConfirmedEvent(String orderId) {
+    	super(orderId);
     }
 }

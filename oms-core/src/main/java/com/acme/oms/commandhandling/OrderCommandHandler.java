@@ -4,7 +4,6 @@ import com.acme.oms.api.CancelOrderCommand;
 import com.acme.oms.api.ConfirmOrderCommand;
 import com.acme.oms.api.CreateOrderCommand;
 import org.axonframework.commandhandling.annotation.CommandHandler;
-import org.axonframework.domain.StringAggregateIdentifier;
 import org.axonframework.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,13 +23,13 @@ public class OrderCommandHandler {
 
     @CommandHandler
     public void confirmOrder(ConfirmOrderCommand command) {
-        Order order = orderRepository.load(new StringAggregateIdentifier(command.getOrderId()));
+        Order order = orderRepository.load(command.getOrderId());
         order.confirm();
     }
 
     @CommandHandler
     public void cancelOrder(CancelOrderCommand command) {
-        Order order = orderRepository.load(new StringAggregateIdentifier(command.getOrderId()));
+        Order order = orderRepository.load(command.getOrderId());
         order.cancel();
     }
 
