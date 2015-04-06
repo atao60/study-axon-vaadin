@@ -17,7 +17,7 @@ package com.acme.oms.ui;
 
 
 import org.axonframework.commandhandling.CommandBus;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.acme.oms.query.JpaOrderQueryRepository;
@@ -48,7 +48,9 @@ public class RunnerVaadinApplication extends Application
     public void init()
     {
     	
-        ApplicationContext appCtx = new ClassPathXmlApplicationContext("META-INF/spring/application-context.xml");
+        @SuppressWarnings("resource")
+        ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("META-INF/spring/application-context.xml");
+        appCtx.registerShutdownHook();
         queryRepository = appCtx.getBean(JpaOrderQueryRepository.class);
         commandBus = appCtx.getBean(CommandBus.class);
         

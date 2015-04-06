@@ -5,7 +5,6 @@ import java.util.List;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.commandhandling.gateway.DefaultCommandGateway;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,7 +21,9 @@ import com.acme.oms.query.OrderQueryRepository;
 public class Runner {
 
     public static void main(String... args) {
-        ApplicationContext appCtx = new ClassPathXmlApplicationContext("META-INF/spring/application-context.xml");
+        @SuppressWarnings("resource")
+        ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("META-INF/spring/application-context.xml");
+        appCtx.registerShutdownHook();
         OrderQueryRepository queryRepository = appCtx.getBean(JpaOrderQueryRepository.class);
         CommandBus commandBus = appCtx.getBean(CommandBus.class);
         
@@ -49,7 +50,6 @@ public class Runner {
                                              order.getStatus()));
         }
         
-        ((ConfigurableApplicationContext)appCtx).close();
     }
 
 }

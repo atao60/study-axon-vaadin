@@ -2,7 +2,7 @@ package com.acme.oms.ui.view;
 
 import com.acme.oms.ui.data.OrderContainer;
 import com.vaadin.ui.HorizontalSplitPanel;
-import com.vaadin.ui.VerticalSplitPanel;
+//import com.vaadin.ui.VerticalSplitPanel;
 
 /**
  * @author Mustafa Erdogan

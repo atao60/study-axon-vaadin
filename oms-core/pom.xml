@@ -10,6 +10,7 @@
         <groupId>com.acme.oms</groupId>
         <artifactId>oms-parent</artifactId>
         <version>1.0.1-SNAPSHOT</version>
+        <relativePath>../oms-parent</relativePath>
     </parent>
 
     <artifactId>oms-core</artifactId>

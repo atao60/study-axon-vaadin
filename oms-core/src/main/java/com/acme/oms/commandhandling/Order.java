@@ -24,7 +24,7 @@ class Order extends AbstractAnnotatedAggregateRoot<String> {
     private String aggregateIdentifier;
 
     private Status status;
-    private String productId;
+//    private String productId;
 
     // constructor required for reconstruction
     protected Order() {
@@ -56,7 +56,7 @@ class Order extends AbstractAnnotatedAggregateRoot<String> {
     private void onCreate(OrderCreatedEvent event) {
         status = Status.OPEN;
         aggregateIdentifier = event.getOrderId();
-        productId = event.getProductId();
+//        productId = event.getProductId();
     }
 
     @EventHandler
