@@ -15,9 +15,9 @@ It's not really the original [study-axon-vaadin](https://code.google.com/p/study
 - the dependencies have been updated but the Vaadin Framework still with a version 6.x,
 - the root project has been refactored with e.g. the creation of a Maven module "parent". 
 
-##### Vaadin 7 project #####
+##### [Vaadin 7 project](vaadin7) #####
 
-TBD
+Work in progress
 
 #### Xtend project ####
 
