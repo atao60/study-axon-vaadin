@@ -7,12 +7,14 @@ Building
 ------
 
 1. Check out the project:  
-`File > Import... > Git > Projects from Git > Clone URI`
-2. Configure oms-parent project as Maven project:  
-`Configure > Convert to Maven Project`
-3. Import oms-core and oms-ui as Eclipse projects:  
+`File > Import... > Git > Projects from Git > Clone URI`  
+with  
+`https://github.com/atao60/study-axon-vaadin`
+1. Configure oms-aggregator project as Maven project:
+  `Configure > Convert to Maven Project`  
+1. Import oms-parent, oms-core and oms-ui as Eclipse projects:  
 `Import... > General > Existing Projects into Workspace`
-3. Build oms-parent:  
+1. Build oms-aggregator:  
 `Run as > Maven build...`  
  and set goal to "package"  
  
