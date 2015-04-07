@@ -54,7 +54,6 @@
         <resources.maven.version>2.6</resources.maven.version>
         <war.maven.version>2.6</war.maven.version>
         <deploy.maven.version>2.7</deploy.maven.version>
-        <eclipse.maven.version>2.9</eclipse.maven.version>
         <vaadin.plugin.version>${vaadinVersion}</vaadin.plugin.version>
         
         <!-- Dependency Management -->
