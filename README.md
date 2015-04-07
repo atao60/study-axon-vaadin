@@ -17,11 +17,11 @@ It's not really the original [study-axon-vaadin](https://code.google.com/p/study
 
 ##### [Vaadin 7 project](vaadin7) #####
 
-Work in progress
+To upgrade to Vaadin 7 requires many changes by itself. It deserves its own sample.
 
 #### Xtend project ####
 
-TBD
+*Work in progress.*
 
 
 Building

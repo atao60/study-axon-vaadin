@@ -1,5 +1,7 @@
-Sample Axon project with JPA and Vaadin
-=====
+Sample Axon project with JPA and Vaadin 7
+======
+
+This sample application uses Vaadin 7.
 
 Building
 ------
@@ -17,7 +19,7 @@ Under Eclipse:
 Running
 ------
 
-Launch the web application from project study-axon-vaadin-legacy-ui:
+Launch the web application from project study-axon-vaadin-v7-ui:
 
         Run as > Maven Build... 
 and:

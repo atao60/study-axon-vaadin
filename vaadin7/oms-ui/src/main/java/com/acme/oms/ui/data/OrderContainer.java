@@ -10,23 +10,45 @@ import java.util.List;
 /**
  * @author Mustafa Erdogan
  */
-//@SuppressWarnings("serial")
 public class OrderContainer extends BeanItemContainer<Order> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	public static final Object[] NATURAL_COL_ORDER = new Object[]{"orderId", "productId", "status"};
-    public static final String[] COL_HEADERS_ENGLISH = new String[]{"Order Id", "Product Id", "Status"};
+
+	public enum DataDescriptor {orderId("Order Id"), productId("Product Id"), status("Status");
+	final private String label;
+	private DataDescriptor(String label) {
+		this.label = label;
+	}
+	public static String[] names() {
+		String[] names = new String[values().length];
+		for(int i = 0; i < values().length;i++) {
+			names[i] = values()[i].name();
+		}
+		return names;
+	}
+	public static String[] labels() {
+		String[] labels = new String[values().length];
+		for(int i = 0; i < values().length;i++) {
+			labels[i] = values()[i].label;
+		}
+		return labels;
+	}
+	public String label() {
+		return label;
+	}
+	}
 
     private OrderQueryRepository queryRepository;
 
-    public OrderContainer(OrderQueryRepository queryRepository) throws IllegalArgumentException {
+    public OrderContainer(OrderQueryRepository queryRepository) {
         super(Order.class);
         this.queryRepository = queryRepository;
     }
 
-    public void refreshContent() {
+    public OrderContainer refreshContent() {
         List<Order> allContacts = queryRepository.findOrders();
         removeAllItems();
         addAll(allContacts);
+        return this;
     }
 }
