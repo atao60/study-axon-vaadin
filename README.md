@@ -8,33 +8,37 @@ Tools: Eclipse with M2Eclipse, Egit, WikiText, ...
 Steps
 ------
 
-##### [Legacy project](legacy) #####
+#### [Legacy project](legacy) ####
 
 It's not really the original [study-axon-vaadin](https://code.google.com/p/study-axon-vaadin/):
 
 - the dependencies have been updated but the Vaadin Framework still with a version 6.x,
 - the root project has been refactored with e.g. the creation of a Maven module "parent". 
 
-##### [Vaadin 7 project](vaadin7) #####
+#### [Vaadin 7 project](vaadin7) ####
 
 To upgrade to Vaadin 7 requires many changes by itself. It deserves its own sample.
 
-#### Xtend project ####
+#### [Xtend project](xtend) ####
 
-*Work in progress.*
+Use Xtend in place of Java.
 
-
-Building
+Checkout
 ------
 
-Check out this repository, e.g. under Eclipse with:
+Under Eclipse:
 
         File > Import... > Git > Projects from Git > Clone URI
 using the URL:
 
         https://github.com/atao60/study-axon-vaadin
         
-For the modules, see each own README.md file.        
+and the wizard "Import existing Eclipse projects", not the "Import as general project" one.       
+        
+Building
+------        
+        
+See the README.md file of each module.        
 
 References
 ------
