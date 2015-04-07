@@ -176,10 +176,6 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${war.maven.version}</version>
                 </plugin>
-                <plugin>
-                    <artifactId>maven-eclipse-plugin</artifactId>
-                    <version>${eclipse.maven.version}</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
