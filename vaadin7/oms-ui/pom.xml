@@ -159,7 +159,7 @@
 
         <!-- Internal dependencies -->
         <dependency>
-            <groupId>com.acme.oms.vaadin7</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>oms-core</artifactId>
             <version>${project.version}</version>
         </dependency>
