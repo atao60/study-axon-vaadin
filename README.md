@@ -17,7 +17,7 @@ It's not really the original [study-axon-vaadin](https://code.google.com/p/study
 
 #### [Vaadin 7 project](vaadin7) ####
 
-To upgrade to Vaadin 7 requires many changes by itself. It deserves its own sample.
+To upgrade to Vaadin 7 requires many changes by itself. It deserves its own project.
 
 #### [Xtend project](xtend) ####
 
