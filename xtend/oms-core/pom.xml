@@ -17,6 +17,7 @@
     <packaging>jar</packaging>
 
     <name>Order Management System - Core</name>
+    <description>Use Xtend as code language</description>
 
     <build>
         <plugins>

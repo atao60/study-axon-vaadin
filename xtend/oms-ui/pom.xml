@@ -17,10 +17,14 @@
     <packaging>war</packaging>
 
     <name>Order Management System - Vaadin Web Application</name>
-    <description>Use Vaadin 7 as GUI Framework</description>
+    <description>Use Xtend as code language and Vaadin 7 as GUI Framework</description>
 
     <build>
         <plugins>
+             <plugin>
+                <groupId>org.eclipse.xtend</groupId>
+                <artifactId>xtend-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>
@@ -158,14 +162,20 @@
     <dependencies>
 
         <!-- Internal dependencies -->
+        
         <dependency>
-            <groupId>com.acme.oms.xtend</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>oms-core</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!-- External dependencies -->
          
+        <dependency>
+            <groupId>org.eclipse.xtend</groupId>
+            <artifactId>org.eclipse.xtend.lib</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-server</artifactId>

@@ -1,4 +1,4 @@
-package com.acme.oms.ui.common.view;
+package com.acme.oms.ui.common.view
 
 /**
  * 
@@ -7,6 +7,6 @@ package com.acme.oms.ui.common.view;
  * 
  * @param <B> type of the bean for the entity
  */
-public interface EntityFormBeanFactory<B> {
-	B newBean();
+interface EntityFormBeanFactory<B> {
+    def B newBean();
 }
