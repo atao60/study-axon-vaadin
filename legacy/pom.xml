@@ -11,7 +11,7 @@
     <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Order Management System - Aggregator</name>
+    <name>Order Management System - Aggregator (legacy)</name>
     <description>Wrap the modules for Order Management System</description>
 
     <modules>
