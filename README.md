@@ -59,7 +59,7 @@ It uses Xtend in place of Java. I should have named it the Low Code Diet!
 
 This kind of diet is possible with the help of Maven Polyglot, Spring Java Configuration, ...
 
-Work in progress.
+*Work in progress.*
 
 Checkout
 ------
