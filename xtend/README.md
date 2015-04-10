@@ -1,7 +1,7 @@
 Sample Axon project with JPA, Vaadin 7 and Xtend
 ======
 
-This [Axon](http://www.axonframework.org/) sample application uses [Xtend](https://eclipse.org/xtend/) in place of [Java](https://www.java.com).
+This sample application is build upon the previous [*vaadin7* one](../vaadin7), but it uses [Xtend](https://eclipse.org/xtend/) in place of [Java](https://www.java.com).
 
 Building
 ------
@@ -33,5 +33,5 @@ Once the launching is successful, check the application by opening from a browse
 
             http://localhost:7080/vaadin
         
->Note. Under Eclipse, jetty:run needs here some space. Add to the launch configuration something like:  
+>Note. Under Eclipse, jetty:run needs more space. Add to the launch configuration something like:  
 >>>JRE > VM arguments: `-XX:MaxPermSize=256m -Xms1024m -Xmx1024m -Xss2m`

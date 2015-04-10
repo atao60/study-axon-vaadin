@@ -1,7 +1,7 @@
 Sample Axon project with JPA and Vaadin 7
 ======
 
-This sample application uses Vaadin 7.
+This sample application is build upon the previous [*legacy* one](../legacy) but it uses Vaadin 7 in place of Vaadin 6.
 
 Building
 ------

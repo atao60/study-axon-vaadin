@@ -1,6 +1,12 @@
 Sample Axon project with JPA and Vaadin
 =====
 
+This sample application is almost the same as the original [study-axon-vaadin](https://code.google.com/p/study-axon-vaadin/) one, i.e. using JPA, Hibernate, Axon and Vaadin. Almost, that is to say:
+
+- the dependencies have been updated but the Vaadin Framework which is still with a version 6.x,
+- the root project has been refactored with, for example, the creation of a Maven module "parent". 
+
+
 Building
 ------
 
