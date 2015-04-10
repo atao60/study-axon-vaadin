@@ -5,7 +5,6 @@ import com.acme.oms.ui.data.OrderBackend
 import com.acme.oms.ui.data.OrderContainer
 import com.google.common.primitives.Booleans
 import com.vaadin.ui.Table
-import java.util.LinkedHashMap
 
 class OrderList extends Table {
 
