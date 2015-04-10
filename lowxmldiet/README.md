@@ -40,6 +40,15 @@ Then each Maven Build launch configuration has to specify:
 * on the tab "Main", Maven Runtime: `MAVEN (External {your maven path} {3.3.1 or above})`
 * on the tab "JRE", VM Arguments: `-Dmaven.multiModuleProjectDirectory=`
 
+#### Logback configuration with Groovy ####
+
+Replace the oms-core logback.xml file by a logback.groovy one. That's all!
+
+#### Spring configuration with Java ####
+
+Work in progress.
+
+
 Building
 ------
 
