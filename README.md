@@ -1,7 +1,7 @@
 Sample Axon projects
 =====
 
-Purpose
+Rational
 -----
 
 This repository aims to gather together a lot of *up-to-date* details spread out on the Internet about technologies from [Axon Framework](https://code.google.com/p/study-axon-vaadin/) to Maven Polyglot through [Xtend](https://eclipse.org/xtend/) and other ones.
@@ -25,28 +25,27 @@ Tools
 
 * WikiText 2.3.2
 
+* ...
+
 Key Features
 -----
 
 * All the compile/build work is done through Eclipse (m2e). Should you prefer the maven command line, fine.
 
-* Maven Multi-Module with a parent pom as module of the aggregator project.
+* Maven Multi-Module with a parent pom module as one of them.
 
 * Skip Vaadin Widgetset compilation.
 
-* No package installed by those projects in the local m2 repository.
+* No package installed in the local m2 repository by any of those projects.
 
-* No specific remote m2 repositories. Maven Central should be enough.
+* No specific remote m2 repository is required. Maven Central should be enough.
 
 Steps
 ------
 
 #### [Legacy project](legacy) ####
 
-It's not really the original [study-axon-vaadin](https://code.google.com/p/study-axon-vaadin/):
-
-- the dependencies have been updated but the Vaadin Framework still with a version 6.x,
-- the root project has been refactored with e.g. the creation of a Maven module "parent". 
+This sample application is based upon the [study-axon-vaadin](https://code.google.com/p/study-axon-vaadin/) case study.
 
 #### [Vaadin 7 project](vaadin7) ####
 
@@ -54,13 +53,13 @@ To upgrade to Vaadin 7 requires many changes by itself. It deserves its own proj
 
 #### [Xtend project](xtend) ####
 
-Use Xtend in place of Java.
+It uses Xtend in place of Java. I should have named it the Low Code Diet!
 
-#### LowXmlDiet project ####
+#### [LowXmlDiet project](lowxmldiet) ####
 
-Maven Polyglot, Spring Java Configuration, ...
+This kind of diet is possible with the help of Maven Polyglot, Spring Java Configuration, ...
 
-TBD
+Work in progress.
 
 Checkout
 ------
