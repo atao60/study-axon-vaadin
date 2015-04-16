@@ -13,7 +13,7 @@
       <pattern>%d [%t] %-5p %-30.30c{1} %x - %m%n</pattern>
     </encoder>
   </appender>
-  <root level="INFO">
+  <root level="DEBUG">
     <appender-ref ref="Stdout"/>
   </root>
 </configuration>
