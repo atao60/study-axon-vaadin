@@ -20,7 +20,7 @@
         <init-param>
             <description>Vaadin7 application class to start</description>
             <param-name>UI</param-name>
-            <param-value>com.acme.oms.ui.OrderApplication</param-value>
+            <param-value>com.acme.oms.ui.OrderWebApplication</param-value>
         </init-param>
         <init-param><!-- See http://dev.vaadin.com/ticket/13877 -->
             <param-name>org.atmosphere.cpr.asyncSupport</param-name>

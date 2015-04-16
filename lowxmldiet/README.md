@@ -44,10 +44,15 @@ Then each Maven Build launch configuration has to specify:
 
 Replace the oms-core logback.xml file by a logback.groovy one. That's all!
 
-#### Spring configuration with Java ####
+#### Spring configuration with Java/Xtend ####
 
-Work in progress.
+No more such files as application-context.xml...
 
+JPA still needs a file persistence.xml to deal with Axon entities.
+
+#### Web application configuration ####
+
+TBD
 
 Building
 ------

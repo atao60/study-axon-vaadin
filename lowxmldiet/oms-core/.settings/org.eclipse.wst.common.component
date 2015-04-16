@@ -3,7 +3,8 @@
         <wb-resource deploy-path="/" source-path="/target/xtend-gen/main"/>
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/" source-path="/src/main/xtend"/>
         <wb-resource deploy-path="/" source-path="/target/xtend-gen/test"/>
+        <wb-resource deploy-path="/" source-path="/src/main/xtend"/>
+        <wb-resource deploy-path="/" source-path="/src/test/xtend"/>
     </wb-module>
 </project-modules>

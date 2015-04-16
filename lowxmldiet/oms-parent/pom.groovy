@@ -59,10 +59,12 @@ project(modelVersion: '4.0.0')
 		'hamcrest.version' '1.3'
 		'hsqldb.version' '2.3.2'
 		'hibernate.version' '4.3.8.Final'
+		'hibernate.validator.version' '5.1.3.Final'
 		'slf4j.version' '1.7.12'
 		'logback.version' '1.1.3'
 		'deploy.maven.version' '2.7'
 		'junit.version' '4.12'
+		'servlet.api.version' '3.0.1'
 
 		'axon.version' '2.4'
 		'vaadin.version' '${vaadinVersion}'
@@ -92,7 +94,7 @@ project(modelVersion: '4.0.0')
 								sources { source 'src/main/xtend' }
 							}
 						}
-						execution(id: 'add-test-source', phase: 'generatetest-sources') {
+						execution(id: 'add-test-source', phase: 'generate-test-sources') {
 							goals { goal 'add-test-source' }
 							configuration {
 								sources { source 'src/test/xtend' }
@@ -169,7 +171,7 @@ project(modelVersion: '4.0.0')
 		dependencies {
 			dependency('org.eclipse.xtend:org.eclipse.xtend.lib:${xtend.version}')
 			dependency('org.axonframework:axon-core:${axon.version}')
-			dependency('org.springframework:spring-context:${spring.version}')
+			dependency('org.springframework:spring-context-support:${spring.version}')
 			{
 				exclusions {exclusion('commons-logging:commons-logging')}
 			}
@@ -179,17 +181,25 @@ project(modelVersion: '4.0.0')
 			dependency('com.vaadin:vaadin-client:${vaadin.version}')
 			dependency('com.vaadin:vaadin-push:${vaadin.version}')
 			dependency('com.vaadin:vaadin-themes:${vaadin.version}')
-			dependency('javax.servlet:javax.servlet-api:3.0.1:provided')
+			dependency('javax.servlet:javax.servlet-api:${servlet.api.version}:provided')
 			dependency('org.hibernate:hibernate-entitymanager:${hibernate.version}')
 			dependency('org.springframework:spring-orm:${spring.version}')
 			{
 				exclusions {exclusion('commons-logging:commons-logging')}
 			}
 			dependency('org.hsqldb:hsqldb:${hsqldb.version}')
+			dependency('org.hibernate:hibernate-validator:${hibernate.validator.version}')
+			dependency('javax.validation:validation-api:1.1.0.Final') // hibernate 5.x => JSR-303 ---> JSR-349 => 1.1.0.Final
 			dependency('ch.qos.logback:logback-classic:${logback.version}')
 			dependency('org.slf4j:jcl-over-slf4j:${slf4j.version}')
 			dependency('junit:junit:${junit.version}:test')
+			dependency('org.springframework:spring-test:${spring.version}:test')
 			dependency('org.axonframework:axon-test:${axon.version}:test')
+			
+			dependency('org.codehaus.groovy:groovy-all:2.4.3')
+			
+			dependency('org.springframework:spring-aspects:${spring.version}')
+			dependency('org.aspectj:aspectjweaver:1.8.5')
 		}
 	}
 	

@@ -9,22 +9,22 @@ import com.vaadin.ui.UI
 /**
  * The Application's "main" class
  */
-class OrderApplication extends UI {
+class OrderWebApplication extends UI {
     
     override init(VaadinRequest request)
     {
         
-        val backend = new OrderBackend()
+        val backend = new OrderBackend
         val manager = new OrderManagerView(backend)
         
         val mainLayout = new HorizontalLayout
-        mainLayout.setSpacing(true)
-        mainLayout.setMargin(true)
+        mainLayout.spacing = true
+        mainLayout.margin = true
 
         mainLayout.addComponent(manager)
         mainLayout.setSizeFull
-        setContent(mainLayout)
-        getPage.setTitle("Web Application with Axon 2, Vaadin 7 and Xtend")
+        content = mainLayout
+        getPage.title = "Web Application with Axon 2, Vaadin 7 and Xtend"
         
     }
     
