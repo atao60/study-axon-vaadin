@@ -83,7 +83,6 @@
         </plugins>
         <pluginManagement>
             <plugins>
-                <!-- required to be be able to put the xtend classes in a separate source folder -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
@@ -112,7 +111,8 @@
                                     <requireMavenVersion>
                                         <version>${maven.minimal.version}</version>
                                         <message><![CDATA[[ERROR] OLD MAVEN [${maven.version}] in use. 
-                                            Maven ${maven.minimal.version} or newer is required.]]>
+                                            Maven ${maven.minimal.version} or new                
+                                            er is required.]]>
                                         </message>
                                     </requireMavenVersion>
                                     <requireJavaVersion>

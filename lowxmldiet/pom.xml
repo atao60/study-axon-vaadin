@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.acme.oms.lowxmldiet</groupId>
+  <artifactId>oms-aggregator</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Order Management System - Aggregator (Low XML diet)</name>
+  <description>Wrap the Maven modules for Order Management System
+    Use Maven Polyglot, Spring Java Config, ...</description>
+  <modules>
+    <module>oms-parent</module>
+    <module>oms-core</module>
+    <module>oms-ui</module>
+  </modules>
+</project>
