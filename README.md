@@ -4,7 +4,7 @@ Sample Axon projects
 Rational
 -----
 
-This repository aims to gather together a lot of *up-to-date* details spread out on the Internet about technologies from [Axon Framework](https://code.google.com/p/study-axon-vaadin/) to Maven Polyglot through [Xtend](https://eclipse.org/xtend/) and other ones.
+This repository aims to gather together a lot of *up-to-date* details spread out on the Internet about technologies from [Axon Framework](http://www.axonframework.org/) to Maven Polyglot through [Xtend](https://eclipse.org/xtend/) and other ones.
 
 A policy of *Divide and rule* will be used: each main technology will be presented through a new project.
 
@@ -33,6 +33,8 @@ Key Features
 * All the compile/build work is done through Eclipse (m2e). Should you prefer the maven command line, fine.
 
 * Maven Multi-Module with a parent pom module as one of them.
+
+* Persistence with JPA.
 
 * Skip Vaadin Widgetset compilation.
 

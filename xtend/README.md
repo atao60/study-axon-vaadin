@@ -29,9 +29,9 @@ and:
 
 >Note. With the option "Resolve Workspace artifacts", no need to package the projects before running "jetty-run".
  
-Once the launching is successful, check the application by opening from a browser:
+Once the launching is successful, check the application by opening, from a browser:
 
             http://localhost:7080/vaadin
         
 >Note. Under Eclipse, jetty:run needs more space. Add to the launch configuration something like:  
->>>JRE > VM arguments: `-XX:MaxPermSize=256m -Xms1024m -Xmx1024m -Xss2m`
+>>JRE > VM arguments: `-XX:MaxPermSize=256m -Xms1024m -Xmx1024m -Xss2m`
