@@ -16,14 +16,13 @@ import org.springframework.orm.jpa.vendor.Database
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
 import org.springframework.transaction.annotation.EnableTransactionManagement
 import org.springframework.transaction.annotation.TransactionManagementConfigurer
-import org.springframework.transaction.support.TransactionTemplate
-import org.springframework.util.Assert
 import org.springframework.util.ClassUtils
 
 import static com.acme.oms.config.DataSourceLabel.*
 import static java.lang.String.format
 import static org.hibernate.cfg.AvailableSettings.*
 import static org.hibernate.jpa.AvailableSettings.NAMING_STRATEGY
+import org.axonframework.common.Assert
 
 @Configuration
 @EnableTransactionManagement
@@ -53,18 +52,18 @@ class PersistenceConfig implements TransactionManagementConfigurer {
     }
     @Bean
     def dataSource() {
-        val source = new SimpleDriverDataSource
+        extension val source = new SimpleDriverDataSource
         
-        source.driverClass = getDriverType(getProperty(driverClassName))
-        source.url = getProperty(url)
-        source.username = getProperty(username)
-        source.password = getProperty(password)
+        driverClass = getDriverType(getProperty(driverClassName))
+        url = getProperty(url)
+        username = getProperty(username)
+        password = getProperty(password)
         
         return source;
     }
     
     def private getDriverType(String typeName) {
-        Assert.hasText(typeName, DRIVER_CLASS_NAME_MUST_BE_PROVIDED)
+        Assert.notNull(typeName, DRIVER_CLASS_NAME_MUST_BE_PROVIDED)
         val driverClassNameToUse = typeName.trim
         try {
             val type = Class.forName(driverClassNameToUse, true, ClassUtils.defaultClassLoader)
@@ -94,22 +93,22 @@ class PersistenceConfig implements TransactionManagementConfigurer {
 */
     @Bean
     def entityManagerFactory() {
-        val em = new LocalContainerEntityManagerFactoryBean
-        em.setDataSource(dataSource)
-        em.setPersistenceUnitName(PERSISTENCE_UNIT_NAME)
-        em.setPackagesToScan(PACKAGES_TO_SCAN)
-        em.setJpaVendorAdapter(jpaVendorAdaper)
-        em.setJpaPropertyMap(additionalProperties)
-        em.afterPropertiesSet
+        extension val em = new LocalContainerEntityManagerFactoryBean
+        dataSource = dataSource
+        persistenceUnitName = PERSISTENCE_UNIT_NAME
+        packagesToScan = PACKAGES_TO_SCAN
+        jpaVendorAdapter = jpaVendorAdaper
+        jpaPropertyMap = additionalProperties
+        afterPropertiesSet
         return em.object
     }
 
     @Bean
     def jpaVendorAdaper() {
-        val vendorAdapter = new HibernateJpaVendorAdapter
-        vendorAdapter.setDatabase(getProperty(DIALECT, Database))
-        vendorAdapter.setShowSql(getProperty(SHOW_SQL, Boolean, true))
-        vendorAdapter.setGenerateDdl(getProperty("jpa.generateDdl", Boolean, true))
+        extension val vendorAdapter = new HibernateJpaVendorAdapter
+        database = getProperty(DIALECT, Database)
+        showSql = getProperty(SHOW_SQL, Boolean, false)
+        generateDdl = getProperty("jpa.generateDdl", Boolean, false)
         return vendorAdapter;
     }
 

@@ -21,7 +21,9 @@ project(modelVersion: '4.0.0')
 		dependency('org.axonframework:axon-core')
 		dependency('org.springframework:spring-context-support')
 		dependency('org.hibernate:hibernate-validator')
-		
+		dependency('org.springframework:spring-aspects')
+		dependency('org.aspectj:aspectjweaver')
+
 		/* persistence */
 		dependency('org.hibernate:hibernate-entitymanager')
 		dependency('org.springframework:spring-orm')
@@ -30,15 +32,12 @@ project(modelVersion: '4.0.0')
 		/* logs */
 		dependency('ch.qos.logback:logback-classic')
 		dependency('org.slf4j:jcl-over-slf4j')
-
+		dependency('org.codehaus.groovy:groovy-all')
+		
 		/* tests */
 		dependency('junit:junit')
 		dependency('org.springframework:spring-test')
 		dependency('org.axonframework:axon-test')
-		
-		dependency('org.codehaus.groovy:groovy-all')
-		
-		dependency('org.springframework:spring-aspects')
-		dependency('org.aspectj:aspectjweaver')
+				
 	}
 }

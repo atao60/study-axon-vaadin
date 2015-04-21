@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.PlatformTransactionManager
 
 @Configuration
-class AxonConfig {
+class CqrsConfig {
     
     @Autowired var PlatformTransactionManager transactionManager
     @PersistenceContext var EntityManager entityManager
@@ -26,16 +26,16 @@ class AxonConfig {
     /* <axon:annotation-config /> */
     @Bean
     def annotationEventListenerBeanPostProcessor() {
-        val listener = new AnnotationEventListenerBeanPostProcessor
-        listener.eventBus = eventBus
-        return listener
+        val processor = new AnnotationEventListenerBeanPostProcessor
+        processor.eventBus = eventBus
+        return processor
     }
     
     @Bean
     def annotationCommandHandlerBeanPostProcessor() {
-        val handler = new AnnotationCommandHandlerBeanPostProcessor
-        handler.commandBus = commandBus
-        return handler
+        val processor = new AnnotationCommandHandlerBeanPostProcessor
+        processor.commandBus = commandBus
+        return processor
     }
     
     @Bean

@@ -23,20 +23,20 @@ class OrderAppRunner {
         val queryRepository = appCtx.getBean(JpaOrderQueryRepository)
         val commandBus = appCtx.getBean(CommandBus)
 
-        val commandGateway = new DefaultCommandGateway(commandBus)
+        extension val commandGateway = new DefaultCommandGateway(commandBus)
 
-        commandGateway.send(new CreateOrderCommand("1", "Chair"))
-        commandGateway.send(new CancelOrderCommand("1"))
-        commandGateway.send(new ConfirmOrderCommand("1"))
+        send(new CreateOrderCommand("1", "Chair"))
+        send(new CancelOrderCommand("1"))
+        send(new ConfirmOrderCommand("1"))
 
-        commandGateway.send(new CreateOrderCommand("2", "Table"))
-        commandGateway.send(new ConfirmOrderCommand("2"))
-        commandGateway.send(new CancelOrderCommand("2"))
+        send(new CreateOrderCommand("2", "Table"))
+        send(new ConfirmOrderCommand("2"))
+        send(new CancelOrderCommand("2"))
 
-        commandGateway.send(new CreateOrderCommand("3", "Lamp"))
-        commandGateway.send(new ConfirmOrderCommand("3"))
+        send(new CreateOrderCommand("3", "Lamp"))
+        send(new ConfirmOrderCommand("3"))
 
-        commandGateway.send(new CreateOrderCommand("4", "Sofa"))
+        send(new CreateOrderCommand("4", "Sofa"))
 
         val orders = queryRepository.findOrders
         for (extension Order order : orders) {
