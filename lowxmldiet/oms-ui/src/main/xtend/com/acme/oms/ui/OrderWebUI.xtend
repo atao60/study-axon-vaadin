@@ -7,9 +7,9 @@ import com.vaadin.ui.HorizontalLayout
 import com.vaadin.ui.UI
 
 /**
- * The Application's "main" class
+ * The Application UI "main" class
  */
-class OrderWebApplication extends UI {
+class OrderWebUI extends UI {
     
     override init(VaadinRequest request)
     {

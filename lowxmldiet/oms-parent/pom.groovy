@@ -22,7 +22,7 @@ project(modelVersion: '4.0.0')
 		'project.build.sourceEncoding' 'UTF-8'
 		'project.reporting.outputEncoding' 'UTF-8'
 
-		'jdk.version' '1.7'
+		'jdk.version' '1.8'
 		'maven.compiler.source' '${jdk.version}'
 		'maven.compiler.target' '${jdk.version}'
 		'maven.compiler.compilerVersion' '${jdk.version}'
@@ -53,7 +53,8 @@ project(modelVersion: '4.0.0')
 		'war.maven.version' '2.6'
 		'build.helper.maven.version' '1.9.1'
 		'compiler.maven.version' '2.5.1'
-
+		'deploy.maven.version' '2.7'
+		
 		/* Dependency Management */
 		
 		'hamcrest.version' '1.3'
@@ -62,9 +63,9 @@ project(modelVersion: '4.0.0')
 		'hibernate.validator.version' '5.1.3.Final'
 		'slf4j.version' '1.7.12'
 		'logback.version' '1.1.3'
-		'deploy.maven.version' '2.7'
 		'junit.version' '4.12'
 		'servlet.api.version' '3.0.1'
+		'aspectjweaver.version' '1.8.5'
 
 		'axon.version' '2.4'
 		'vaadin.version' '${vaadinVersion}'
@@ -79,7 +80,7 @@ project(modelVersion: '4.0.0')
 		}
 		pluginManagement {
 			plugins {
-				/* required to be be able to put the xtend classes in a separate source folder */
+				/* required to be able to put the xtend classes in a separate source folder */
 				plugin('org.codehaus.mojo:build-helper-maven-plugin:${build.helper.maven.version}')
 				{
 					executions {
@@ -199,7 +200,7 @@ project(modelVersion: '4.0.0')
 			dependency('org.codehaus.groovy:groovy-all:2.4.3')
 			
 			dependency('org.springframework:spring-aspects:${spring.version}')
-			dependency('org.aspectj:aspectjweaver:1.8.5')
+			dependency('org.aspectj:aspectjweaver:${aspectjweaver.version}')
 		}
 	}
 	
