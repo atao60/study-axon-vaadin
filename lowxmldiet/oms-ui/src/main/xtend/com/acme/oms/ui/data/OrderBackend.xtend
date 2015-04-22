@@ -23,8 +23,9 @@ class OrderBackend implements Backend<Order> {
     val OrderContainer container
 
     new() {
-        extension val appCtx = new AnnotationConfigApplicationContext(MainConfig)
-        registerShutdownHook
+        extension val appCtx = new AnnotationConfigApplicationContext(MainConfig) => [
+            registerShutdownHook
+        ]
         queryRepository = getBean(JpaOrderQueryRepository)
         container = new OrderContainer(queryRepository)
         val commandBus = getBean(CommandBus)

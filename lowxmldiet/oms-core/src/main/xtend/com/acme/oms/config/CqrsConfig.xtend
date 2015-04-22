@@ -26,16 +26,16 @@ class CqrsConfig {
     /* <axon:annotation-config /> */
     @Bean
     def annotationEventListenerBeanPostProcessor() {
-        val processor = new AnnotationEventListenerBeanPostProcessor
-        processor.eventBus = eventBus
-        processor
+        new AnnotationEventListenerBeanPostProcessor => [
+            eventBus = eventBus
+        ]
     }
     
     @Bean
     def annotationCommandHandlerBeanPostProcessor() {
-        val processor = new AnnotationCommandHandlerBeanPostProcessor
-        processor.commandBus = commandBus
-        processor
+        new AnnotationCommandHandlerBeanPostProcessor => [
+            commandBus = commandBus
+        ]
     }
     
     @Bean
@@ -49,9 +49,9 @@ class CqrsConfig {
     */
     @Bean
     def orderRepository() {
-        val repository = new EventSourcingRepository<Order>(Order, eventStore)
-        repository.eventBus = eventBus
-        repository
+        new EventSourcingRepository<Order>(Order, eventStore) => [
+            eventBus = eventBus
+        ]
     }
 
     // <axon:jpa-event-store id="eventStore" />
@@ -71,9 +71,9 @@ class CqrsConfig {
     // <axon:command-bus id="commandBus"/>
     @Bean
     def commandBus() {
-        val commandBus = new SimpleCommandBus
-        commandBus.transactionManager = new SpringTransactionManager(transactionManager)
-        commandBus
+        new SimpleCommandBus => [
+            transactionManager = new SpringTransactionManager(transactionManager)
+        ]
     }
 
 }

@@ -19,6 +19,8 @@ import static java.lang.String.format
 @Configuration
 class StudyConfigurator implements Configurator{
     
+    public static val PROPERTIES_FILE_PATH = "META-INF/logback.properties"
+    
     public static val PATTERN_LABEL = "pattern"
     public static val ROOT_LEVEL_LABEL = "root.level"
     
@@ -32,8 +34,9 @@ class StudyConfigurator implements Configurator{
     var Context context
 
     new() {
-        properties = new Properties
-        properties.load(StudyConfigurator.classLoader.getResourceAsStream("META-INF/logback.properties"))
+        properties = new Properties => [
+            load(StudyConfigurator.classLoader.getResourceAsStream(PROPERTIES_FILE_PATH))
+        ]
     }
 
     def private doConfigure(LoggerContext lc) {

@@ -10,7 +10,6 @@ import org.springframework.core.env.Environment
 
 @Configuration
 @ComponentScan(#["com.acme.oms"/*, "org.axonframework.eventstore.jpa"*/])
-//@Import(value = #[PersistenceConfig, CqrsConfig])
 class MainConfig {
  
  

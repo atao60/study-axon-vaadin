@@ -25,21 +25,21 @@ class Order extends AbstractAnnotatedAggregateRoot<String> {
     }
     
     new(String orderId, String productId) {
-        apply(new OrderCreatedEvent(orderId, productId))
+        new OrderCreatedEvent(orderId, productId).apply
     }
     
     
     def confirm() {
         // we can only confirm an open order.
         if (status === Status.OPEN) {
-            apply(new OrderConfirmedEvent(getAggregateIdentifier))
+            new OrderConfirmedEvent(getAggregateIdentifier).apply
         }
     }
 
     def cancel() {
         // don't raise an event if order is already cancelled
         if (status !== Status.CANCELLED) {
-            apply(new OrderCancelledEvent(getAggregateIdentifier))
+            new OrderCancelledEvent(getAggregateIdentifier).apply
         }
     }
 
@@ -47,7 +47,6 @@ class Order extends AbstractAnnotatedAggregateRoot<String> {
     def private void onCreate(OrderCreatedEvent event) {
         status = Status.OPEN
         aggregateIdentifier = event.orderId
-//        productId = event.getProductId();
     }
 
     @EventHandler

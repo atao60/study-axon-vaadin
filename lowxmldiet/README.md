@@ -45,19 +45,23 @@ Then each Maven Build launch configuration has to specify:
 
 #### Logback configuration with Java/Xtend ####
 
-Remove any logback.xml or logback.groovy file from the oms-core. An implementation of com.qos.logback.classic.spi.Configurator will be resolved using the ServiceLoader.
+Remove any *logback.xml* or *logback.groovy* file from the oms-core. 
 
-The main logging properties are set together in a file `META-INF/logback.properties`.
+An implementation of com.qos.logback.classic.spi.Configurator will be resolved using the ServiceLoader. The main logging properties are set together in a file `META-INF/logback.properties`.
+
+#### JPA configuration with Java/Xtend ####
+
+No more *persistence.xml* file.
+
+Even the transaction type and the entity classes provided by Axon are specified in a file `META-INF/persistence.properties`. Their values are dealt with by an instance of Spring *PersistenceUnitPostProcessor*.
 
 #### Spring configuration with Java/Xtend ####
 
-No more such files as application-context.xml...
-
-JPA still needs a file persistence.xml to deal with Axon entities.
+No more such files as *application-context.xml*, ...
 
 #### Web application configuration ####
 
-Use Servlet 3.0 and Spring to get rid of web.xml.
+Use Servlet 3.0 and annotations to get rid of *web.xml*.
 
 Building
 ------

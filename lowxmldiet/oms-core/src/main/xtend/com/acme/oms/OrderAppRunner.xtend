@@ -18,10 +18,11 @@ class OrderAppRunner {
 
     def static main(String... args) {
 
-        val appCtx = new AnnotationConfigApplicationContext(MainConfig)
-        appCtx.registerShutdownHook
-        val queryRepository = appCtx.getBean(JpaOrderQueryRepository)
-        val commandBus = appCtx.getBean(CommandBus)
+        extension val appCtx = new AnnotationConfigApplicationContext(MainConfig) => [
+            registerShutdownHook
+        ]
+        val queryRepository = getBean(JpaOrderQueryRepository)
+        val commandBus = getBean(CommandBus)
 
         extension val commandGateway = new DefaultCommandGateway(commandBus)
 
