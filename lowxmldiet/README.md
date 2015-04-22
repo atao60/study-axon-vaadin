@@ -5,6 +5,7 @@ This sample application is build upon the previous [xtend one](../xtend). It tri
 
 * Maven Polyglot with Groovy
 * Spring Java Configuration
+* Logback Java configuration
 
 Transformation
 -------
@@ -40,9 +41,11 @@ Then each Maven Build launch configuration has to specify:
 * on the tab "Main", Maven Runtime: `MAVEN (External {your maven path} {3.3.1 or above})`
 * on the tab "JRE", VM Arguments: `-Dmaven.multiModuleProjectDirectory=`
 
-#### Logback configuration with Groovy ####
+#### Logback configuration with Java ####
 
-Replace the oms-core logback.xml file by a logback.groovy one. That's all!
+Remove any logback.xml or logback.groovy file from the oms-core. An implementation of com.qos.logback.classic.spi.Configurator will be resolved using the ServiceLoader.
+
+The main logging properties are set together in a file `META-INF/logback.properties`.
 
 #### Spring configuration with Java/Xtend ####
 
