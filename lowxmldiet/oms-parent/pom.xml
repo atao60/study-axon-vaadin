@@ -23,11 +23,12 @@
     <hibernate.validator.version>5.1.3.Final</hibernate.validator.version>
     <aspectjweaver.version>1.8.5</aspectjweaver.version>
     <web.port>7080</web.port>
-    <vaadinVersion>7.4.3</vaadinVersion>
+    <vaadinVersion>7.4.4</vaadinVersion>
     <maven.compiler.compilerVersion>${jdk.version}</maven.compiler.compilerVersion>
     <surefire.maven.version>2.12.4</surefire.maven.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <xtend.testOutputDir>${project.build.directory}/xtend-gen/test</xtend.testOutputDir>
+    <shade.maven.version>2.3</shade.maven.version>
     <resources.maven.version>2.6</resources.maven.version>
     <jetty.maven.version>9.2.10.v20150310</jetty.maven.version>
     <hamcrest.version>1.3</hamcrest.version>
@@ -329,6 +330,10 @@
         <plugin>
           <artifactId>maven-eclipse-plugin</artifactId>
           <version>${eclipse.maven.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>${shade.maven.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>

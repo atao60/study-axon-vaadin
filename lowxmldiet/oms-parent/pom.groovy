@@ -37,23 +37,24 @@ project(modelVersion: '4.0.0')
 		
 		'jetty.maven.version' '9.2.10.v20150310'
 		
-		'vaadinVersion' '7.4.3'
+		'vaadinVersion' '7.4.4'
 		'xtendVersion' '2.7.3' /* jnario-1.0.1 seems unable to use xtend 2.8.0 */
 		
-		'install.maven.version' '2.4'
 		'vaadin.plugin.version' '${vaadinVersion}'
+		'xtend.maven.version' '${xtendVersion}'
+		'enforcer.maven.version' '1.4'
+		'build.helper.maven.version' '1.9.1'
+		'install.maven.version' '2.4'
 		'surefire.maven.version' '2.12.4'
 		'resources.maven.version' '2.6'
 		'site.maven.version' '3.3'
-		'eclipse.maven.version' '2.9'
 		'jar.maven.version' '2.4'
-		'xtend.maven.version' '${xtendVersion}'
 		'clean.maven.version' '2.5'
-		'enforcer.maven.version' '1.4'
 		'war.maven.version' '2.6'
-		'build.helper.maven.version' '1.9.1'
 		'compiler.maven.version' '2.5.1'
 		'deploy.maven.version' '2.7'
+		'eclipse.maven.version' '2.9'
+		'shade.maven.version' '2.3'
 		
 		/* Dependency Management */
 		
@@ -169,6 +170,7 @@ project(modelVersion: '4.0.0')
 					}
 				}
 				plugin('org.apache.maven.plugins:maven-eclipse-plugin:${eclipse.maven.version}')
+				plugin('org.apache.maven.plugins:maven-shade-plugin:${shade.maven.version}') 
 			}
 		}
 	}

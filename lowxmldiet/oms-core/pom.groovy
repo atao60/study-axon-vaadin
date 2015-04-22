@@ -13,6 +13,27 @@ project(modelVersion: '4.0.0')
 		plugins {
 			plugin('org.eclipse.xtend:xtend-maven-plugin')
 			plugin('org.apache.maven.plugins:maven-enforcer-plugin')
+			plugin('org.apache.maven.plugins:maven-shade-plugin') {
+				executions {
+					execution {
+						phase 'package'
+						goals { goal 'shade' }
+						configuration {
+							transformers {
+								transformer(implementation:'org.apache.maven.plugins.shade.resource.ManifestResourceTransformer') {
+									mainClass 'com.acme.oms.OrderAppRunner'
+								}
+								transformer(implementation:'org.apache.maven.plugins.shade.resource.IncludeResourceTransformer') {
+									file '../README.md'
+									resource 'README.md'
+								}
+							}
+							shadedArtifactAttached 'true'
+							shadedClassifierName 'standalone'
+						}
+					}
+				}
+			}
 		}
 	}
 

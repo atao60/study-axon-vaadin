@@ -57,37 +57,87 @@ JPA still needs a file persistence.xml to deal with Axon entities.
 
 #### Web application configuration ####
 
-Use Servlet 3.0 to get rid of web.xml.
+Use Servlet 3.0 and Spring to get rid of web.xml.
 
 Building
 ------
 
+JRE 1.8 and Maven 3.3.1 are required.
+
 Under Eclipse:
 
+1. Import the project *lowxmldiet* from GitHub repository, see [here](../README.md)
 1. Configure the root project *study-axon-vaadin-lowxmldiet* as Maven project:
   `Configure > Convert to Maven Project`  
 1. Import the sub-folders *oms-parent*, *oms-core* and *oms-ui* as Eclipse projects:  
 `Import... > General > Existing Projects into Workspace`
-1. Build the root project:  
-`Run as > Maven build...`  
- and set goal to "clean package"  
+1. Build the root project:
+        `Run as > Maven build...`  
+ and set goal to: clean package.
  
 Running
 ------
 
-Launch the web application from project *study-axon-vaadin-lowxmldiet-ui*:
+#### Under a console ####
+
+##### Console application #####
+
+The packages must have been built as described above. 
+
+Go to the folder that contains the project *study-axon-vaadin-lowxmldiet-core* and run:
+
+        java -jar target/oms-core-1.0.1-SNAPSHOT-standalone.jar
+    
+##### Web application #####
+
+Go to the folder that contains the project *study-axon-vaadin-lowxmldiet* and run:  
+
+        mvn install
+        cd oms-ui
+        mvn jetty:run-war
+    
+Once the launching is successful, check the application from a browser by opening:
+
+        http://localhost:7080/vaadin
+    
+
+#### Under Eclipse ####
+
+There is no need to build the packages before running the application as described below.
+
+##### Console application #####
+
+Under Eclipse, launch the console application:
+
+        Run as > Java Application
+and:
+
+- set project to: study-axon-vaadin-lowxmldiet-core
+- set main class to: com.acme.oms.OrderAppRunner
+- set Execution environment to: JavaSE-1.8
+
+##### Web application #####
+
+Under Eclipse, launch the web application:
 
         Run as > Maven Build... 
 and:
 
-- set goal to "jetty-run"
+- set base directory to: ${workspace_loc:/study-axon-vaadin-lowxmldiet-ui}
+- set goal to: jetty-run
 - check "Resolve Workspace artifacts"
+- select a Maven runtime with version 3.3.1 or above
+- set Execution environment to: JavaSE-1.8
+- add to the list of VM arguments: -Xms1024m -Xmx1024m -Xss2m -Dmaven.multiModuleProjectDirectory=
 
->Note. With the option "Resolve Workspace artifacts", no need to package the projects before running "jetty-run".
+>Notes.  
+
+>- With the option "Resolve Workspace artifacts", no need to package the projects before running "jetty-run".
+>- Under Eclipse, with Xtend, `jetty:run` needs more space. Then the memory arguments.
+>- Maven 3.3.1 under Eclipse requires the argument `-Dmaven.multiModuleProjectDirectory=`, even empty.
  
-Once the launching is successful, check the application by opening from a browser:
+Once the launching is successful, check the application from a browser by opening:
 
-            http://localhost:7080/vaadin
+        http://localhost:7080/vaadin
         
->Note. Under Eclipse, with Xtend, jetty:run needs more space. Add to the launch configuration something like:  
->>>JRE > VM arguments: `-XX:MaxPermSize=256m -Xms1024m -Xmx1024m -Xss2m`
+
