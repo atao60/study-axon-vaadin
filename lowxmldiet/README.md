@@ -5,7 +5,9 @@ This sample application is build upon the previous [xtend one](../xtend). It tri
 
 * Maven Polyglot with Groovy
 * Spring Java Configuration
-* Logback Java configuration
+* Logback Java Configuration
+
+There is a price to pay: configuration data are now dispersed across many code files.
 
 Transformation
 -------
@@ -41,7 +43,7 @@ Then each Maven Build launch configuration has to specify:
 * on the tab "Main", Maven Runtime: `MAVEN (External {your maven path} {3.3.1 or above})`
 * on the tab "JRE", VM Arguments: `-Dmaven.multiModuleProjectDirectory=`
 
-#### Logback configuration with Java ####
+#### Logback configuration with Java/Xtend ####
 
 Remove any logback.xml or logback.groovy file from the oms-core. An implementation of com.qos.logback.classic.spi.Configurator will be resolved using the ServiceLoader.
 
@@ -55,7 +57,7 @@ JPA still needs a file persistence.xml to deal with Axon entities.
 
 #### Web application configuration ####
 
-TBD
+Use Servlet 3.0 to get rid of web.xml.
 
 Building
 ------
