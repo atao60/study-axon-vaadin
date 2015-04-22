@@ -12,6 +12,8 @@ Building
 
 Under Eclipse:
 
+1. Import the project *lowxmldiet* from GitHub repository:  
+           https://github.com/atao60/study-axon-vaadin.git
 1. Configure the root project as Maven project:
   `Configure > Convert to Maven Project`  
 1. Import the sub-folders oms-parent, oms-core and oms-ui as Eclipse projects:  

@@ -29,7 +29,7 @@ import org.atmosphere.cpr.Broadcaster;
 import org.atmosphere.cpr.BroadcasterFactory;
 
 /**
- * Duplicated class to add the annotation WebListener
+ * Hack to avoid any web.xml file: duplicate this class to add the annotation WebListener
  */
 @WebListener
 public class SessionSupport implements HttpSessionListener {

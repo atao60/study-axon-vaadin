@@ -17,13 +17,13 @@ class OrderWebUI extends UI {
         val backend = new OrderBackend
         val manager = new OrderManagerView(backend)
         
-        val mainLayout = new HorizontalLayout
-        mainLayout.spacing = true
-        mainLayout.margin = true
+        content = new HorizontalLayout => [
+            spacing = true
+            margin = true
+            addComponent(manager)
+            setSizeFull
+        ]
 
-        mainLayout.addComponent(manager)
-        mainLayout.setSizeFull
-        content = mainLayout
         getPage.title = "Web Application with Axon 2, Vaadin 7 and Xtend"
         
     }
