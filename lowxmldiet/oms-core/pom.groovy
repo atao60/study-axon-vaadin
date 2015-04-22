@@ -32,7 +32,6 @@ project(modelVersion: '4.0.0')
 		/* logs */
 		dependency('ch.qos.logback:logback-classic')
 		dependency('org.slf4j:jcl-over-slf4j')
-		dependency('org.codehaus.groovy:groovy-all')
 		
 		/* tests */
 		dependency('junit:junit')

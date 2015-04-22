@@ -33,7 +33,7 @@ project(modelVersion: '4.0.0')
 		
 		/* Maven and Plugin Management */
 
-		'maven.minimal.version' '3.3.1' /* Maven 3.3.1 or above to get Polyglot */
+		'maven.minimal.version' '3.3.1' /* Maven 3.3.1 or above required for Polyglot */
 		
 		'jetty.maven.version' '9.2.10.v20150310'
 		
@@ -64,8 +64,9 @@ project(modelVersion: '4.0.0')
 		'slf4j.version' '1.7.12'
 		'logback.version' '1.1.3'
 		'junit.version' '4.12'
-		'servlet.api.version' '3.0.1'
+		'servlet.api.version' '3.1.0'
 		'aspectjweaver.version' '1.8.5'
+		'cglib.version' '3.1'
 
 		'axon.version' '2.4'
 		'vaadin.version' '${vaadinVersion}'
@@ -162,7 +163,11 @@ project(modelVersion: '4.0.0')
 				plugin('org.apache.maven.plugins:maven-site-plugin:${site.maven.version}')
 				plugin('org.apache.maven.plugins:maven-resources-plugin:${resources.maven.version}')
 				plugin('org.apache.maven.plugins:maven-deploy-plugin:${deploy.maven.version}')
-				plugin('org.apache.maven.plugins:maven-war-plugin:${war.maven.version}')
+				plugin('org.apache.maven.plugins:maven-war-plugin:${war.maven.version}') {
+					configuration {
+						failOnMissingWebXml 'false' // required for XML-less configuration
+					}
+				}
 				plugin('org.apache.maven.plugins:maven-eclipse-plugin:${eclipse.maven.version}')
 			}
 		}
@@ -176,31 +181,35 @@ project(modelVersion: '4.0.0')
 			{
 				exclusions {exclusion('commons-logging:commons-logging')}
 			}
+			dependency('org.springframework:spring-aspects:${spring.version}')
+			dependency('org.aspectj:aspectjweaver:${aspectjweaver.version}')
+			dependency('cglib:cglib-nodep:${cglib.version}') // required by Axon-core and by Spring for @Configuration 
+			/* web */
 			dependency('com.vaadin:vaadin-server:${vaadin.version}')
 			dependency('com.vaadin:vaadin-client-compiled:${vaadin.version}')
 			dependency('com.vaadin:vaadin-client-compiler:${vaadin.version}')
 			dependency('com.vaadin:vaadin-client:${vaadin.version}')
 			dependency('com.vaadin:vaadin-push:${vaadin.version}')
 			dependency('com.vaadin:vaadin-themes:${vaadin.version}')
-			dependency('javax.servlet:javax.servlet-api:${servlet.api.version}:provided')
-			dependency('org.hibernate:hibernate-entitymanager:${hibernate.version}')
+			dependency('javax.servlet:javax.servlet-api:${servlet.api.version}:provided') // Servlet 3.0 required for Java Base Configuration
+			/* persistence */
 			dependency('org.springframework:spring-orm:${spring.version}')
 			{
 				exclusions {exclusion('commons-logging:commons-logging')}
 			}
+			dependency('org.hibernate:hibernate-entitymanager:${hibernate.version}')
 			dependency('org.hsqldb:hsqldb:${hsqldb.version}')
+			/* validation */
 			dependency('org.hibernate:hibernate-validator:${hibernate.validator.version}')
-			dependency('javax.validation:validation-api:1.1.0.Final') // hibernate 5.x => JSR-303 ---> JSR-349 => 1.1.0.Final
+			dependency('javax.validation:validation-api:1.1.0.Final') // hibernate validation 5.x ---> JSR-303 ---> JSR-349 => 1.1.0.Final
+			/* logging */
 			dependency('ch.qos.logback:logback-classic:${logback.version}')
 			dependency('org.slf4j:jcl-over-slf4j:${slf4j.version}')
+			/* tests */
 			dependency('junit:junit:${junit.version}:test')
 			dependency('org.springframework:spring-test:${spring.version}:test')
 			dependency('org.axonframework:axon-test:${axon.version}:test')
 			
-			dependency('org.codehaus.groovy:groovy-all:2.4.3')
-			
-			dependency('org.springframework:spring-aspects:${spring.version}')
-			dependency('org.aspectj:aspectjweaver:${aspectjweaver.version}')
 		}
 	}
 	
