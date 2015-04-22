@@ -15,27 +15,27 @@ class OrderList extends Table {
         DataDescriptor.productId.name -> true
     )
     
-    val OrderContainer container;
+    val OrderContainer container
 
     new(OrderBackend backend) {
         container = backend.container
-        setContainerDataSource(container)
+        containerDataSource = container
 
         initDataLayout
         initGlobalBehavior
     }
 
     def initDataLayout() {
-        setVisibleColumns(DataDescriptor.names as Object[])
-        setColumnHeaders(DataDescriptor.labels)
+        visibleColumns = DataDescriptor.names as Object[]
+        columnHeaders = DataDescriptor.labels
         sort(COLUMN_SORTERS.keySet.toArray, Booleans.toArray(COLUMN_SORTERS.values))
     }
 
     def initGlobalBehavior() {
         allowColumnResizing
-        setSelectable(true)
-        setImmediate(true)
-        setNullSelectionAllowed(false)
+        selectable = true
+        immediate = true
+        nullSelectionAllowed = false
         setSizeFull
     }
 

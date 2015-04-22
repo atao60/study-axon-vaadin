@@ -18,13 +18,13 @@ class OrderCommandHandlerTest {
     def void setUp() throws Exception {
         fixture = Fixtures::newGivenWhenThenFixture(Order)
         val commandHandler = new OrderCommandHandler
-        commandHandler.setOrderRepository(fixture.repository)
+        commandHandler.orderRepository = fixture.repository
         fixture.registerAnnotatedCommandHandler(commandHandler)
     }
 
     @Test
     def void testCreateOrder() {
-        fixture.given()
+        fixture.given
                 .when(new CreateOrderCommand("123", "Chair1"))
                 .expectEvents(new OrderCreatedEvent("123", "Chair1"))
     }

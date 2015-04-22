@@ -41,10 +41,10 @@ class OrderManagerView extends HorizontalSplitPanel implements ListView {
         update
         bindFormWithTableRecord
         
-        setFirstComponent(controlsAndForm)
-        setSecondComponent(this.table)
-        setSplitPosition(20)
-        setFormReadOnly(true)
+        firstComponent = controlsAndForm
+        secondComponent = this.table
+        splitPosition = 20
+        formReadOnly = true
     }
 
     private def controlsAndForm() {
@@ -58,34 +58,34 @@ class OrderManagerView extends HorizontalSplitPanel implements ListView {
         // handle selection changes
         table.addValueChangeListener([ValueChangeEvent event |
                  form.bind(table.value as Order)
-                 setFormReadOnly(true)
+                 formReadOnly = true
         ])
     }
 
     private def buildControls() {
         val tableControls = new HorizontalLayout
-        tableControls.setMargin(TOP_MARGIN);
-        tableControls.setSpacing(true)
+        tableControls.margin = TOP_MARGIN
+        tableControls.spacing = true
         validate = new Button("Add", [ClickEvent event |
                 form.handleSave
                 update
                 form.bind(null as Order)
-                setFormReadOnly(true)
+                formReadOnly = true
         ]);
         create = new Button("New",  [ClickEvent event |
                 form.createOrder
                 table.select(table.nullSelectionItemId)
-                setFormReadOnly(false)
+                formReadOnly = false
         ])
         cancel = new Button("Cancel", [ClickEvent event |
                 form.handleCancel
                 update
-                setFormReadOnly(true)
+                formReadOnly = true
         ])
         confirm = new Button("Confirm", [ClickEvent event |
                 form.handleConfirm
                 update
-                setFormReadOnly(true)
+                formReadOnly = true
         ])
         tableControls.addComponent(validate)
         tableControls.addComponent(create)
@@ -96,16 +96,16 @@ class OrderManagerView extends HorizontalSplitPanel implements ListView {
     
 
     private def setFormReadOnly(boolean readOnly) {
-        form.setReadOnly(readOnly);
-        validate.setVisible(! readOnly);
-        create.setVisible(readOnly);
-        cancel.setVisible(readOnly);
-        confirm.setVisible(readOnly);
+        form.readOnly = readOnly
+        validate.visible = ! readOnly
+        create.visible = readOnly
+        cancel.visible = readOnly
+        confirm.visible = readOnly
     }
 
     override update() {
         val container = backend.container.refreshContent
-        table.setContainerDataSource(container)
+        table.containerDataSource = container
     }
 
 }

@@ -8,5 +8,5 @@ package com.acme.oms.ui.common.view
  * @param <B> type of the bean for the entity
  */
 interface EntityFormBeanFactory<B> {
-    def B newBean();
+    def B newBean()
 }

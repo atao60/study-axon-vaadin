@@ -23,6 +23,7 @@
     <axon:event-sourcing-repository
         id="orderRepository"
         aggregate-type="com.acme.oms.commandhandling.Order" />
+        
     <axon:jpa-event-store id="eventStore" />
 
     <axon:event-bus id="eventBus" />

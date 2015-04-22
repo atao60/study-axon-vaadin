@@ -17,15 +17,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  @Accessors
 class OrderBackend implements Backend<Order> {
     
-//    static val SPRING_CONTEXT_FILE = "META-INF/spring/application-context.xml"
-    
     @Accessors(NONE)
     val OrderQueryRepository queryRepository
     val CommandGateway commandGateway
     val OrderContainer container
 
     new() {
-//        extension val appCtx = new ClassPathXmlApplicationContext(SPRING_CONTEXT_FILE)
         extension val appCtx = new AnnotationConfigApplicationContext(MainConfig)
         registerShutdownHook
         queryRepository = getBean(JpaOrderQueryRepository)

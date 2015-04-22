@@ -32,7 +32,7 @@ class Order extends AbstractAnnotatedAggregateRoot<String> {
     def confirm() {
         // we can only confirm an open order.
         if (status === Status.OPEN) {
-            apply(new OrderConfirmedEvent(getAggregateIdentifier));
+            apply(new OrderConfirmedEvent(getAggregateIdentifier))
         }
     }
 

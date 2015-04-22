@@ -44,7 +44,7 @@ abstract class Binder<E, B> {
     def setReadOnly(boolean readOnly) {
         // NullPointerException on Field with setReadOnly(...)
         // The result is very good with setEnabled(...) so keep it as it is.
-        fieldGroup.setEnabled(! readOnly);//.setReadOnly(readOnly);
+        fieldGroup.enabled = ! readOnly
     }
     
     def BeanItem<B> getItemDataSource() {
@@ -54,7 +54,7 @@ abstract class Binder<E, B> {
     
     def bind(B entityBean) {
         val item = new BeanItem<B>(entityBean?: factory.newBean)
-        fieldGroup.setItemDataSource(item)
+        fieldGroup.itemDataSource = item
     }
     
     def abstract void bindEntity(E entity);

@@ -28,19 +28,19 @@ class CqrsConfig {
     def annotationEventListenerBeanPostProcessor() {
         val processor = new AnnotationEventListenerBeanPostProcessor
         processor.eventBus = eventBus
-        return processor
+        processor
     }
     
     @Bean
     def annotationCommandHandlerBeanPostProcessor() {
         val processor = new AnnotationCommandHandlerBeanPostProcessor
         processor.commandBus = commandBus
-        return processor
+        processor
     }
     
     @Bean
     def aggregateAnnotationCommandHandler() {
-        return new AggregateAnnotationCommandHandler<Order>(Order, orderRepository) 
+        new AggregateAnnotationCommandHandler<Order>(Order, orderRepository) 
     }
      
     /*
@@ -51,7 +51,7 @@ class CqrsConfig {
     def orderRepository() {
         val repository = new EventSourcingRepository<Order>(Order, eventStore)
         repository.eventBus = eventBus
-        return repository
+        repository
     }
 
     // <axon:jpa-event-store id="eventStore" />
@@ -59,13 +59,13 @@ class CqrsConfig {
     def eventStore() {
         val entityManagerProvider = new ContainerManagedEntityManagerProvider
         entityManagerProvider.entityManager = entityManager
-        return new JpaEventStore(entityManagerProvider)
+        new JpaEventStore(entityManagerProvider)
     }
 
     // <axon:event-bus id="eventBus" />
     @Bean
     def eventBus() {
-        return new SimpleEventBus
+        new SimpleEventBus
     }
 
     // <axon:command-bus id="commandBus"/>
@@ -73,7 +73,7 @@ class CqrsConfig {
     def commandBus() {
         val commandBus = new SimpleCommandBus
         commandBus.transactionManager = new SpringTransactionManager(transactionManager)
-        return commandBus;
+        commandBus
     }
 
 }

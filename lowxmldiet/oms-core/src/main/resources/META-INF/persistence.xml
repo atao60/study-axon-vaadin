@@ -5,9 +5,6 @@
                                  http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
              version="1.0">
     <persistence-unit name="tutorial" transaction-type="RESOURCE_LOCAL">
-<!-- 
-        <provider>org.hibernate.jpa.HibernatePersistence</provider>
- -->        
         <!-- Needed for the JPA Event Store -->
         <class>org.axonframework.eventstore.jpa.DomainEventEntry</class>
         <class>org.axonframework.eventstore.jpa.SnapshotEventEntry</class>

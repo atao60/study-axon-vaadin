@@ -43,8 +43,8 @@ class OrderForm extends GridLayout
     }
 
     override setReadOnly(boolean readOnly) {
-        super.setReadOnly(readOnly)
-        orderBinder.setReadOnly(readOnly)
+        super.readOnly = readOnly
+        orderBinder.readOnly = readOnly
     }
     
     def createOrder() {
@@ -56,7 +56,7 @@ class OrderForm extends GridLayout
             return
         }
         
-        var String message = null;
+        var String message = null
         try{
             orderBinder.commit
             val order = bean
@@ -65,7 +65,7 @@ class OrderForm extends GridLayout
             message = format(CREATED_NEW_ORDER, order.orderId)
             
         } catch (CommitException ce) {
-            message = UNABLE_TO_COMMIT_THE_ORDER;
+            message = UNABLE_TO_COMMIT_THE_ORDER
         }
         
         Notification.show(message, Notification.Type.TRAY_NOTIFICATION)
@@ -98,16 +98,16 @@ class OrderForm extends GridLayout
     }
     
     private def initLayout() {
-        setColumns(1)
-        setRows(DataDescriptor.values.length)
+        columns = 1
+        rows = DataDescriptor.values.length
     }
     
     private def initFieldGroup() {
-        for(DataDescriptor dd:DataDescriptor.values){
+        for(DataDescriptor dd: DataDescriptor.values){
             val f = new TextField(dd.label)
             orderBinder.bind(f, dd.name)
             addComponent(f)
-            f.setEnabled(!DataDescriptor.status.equals(dd))
+            f.enabled = ! DataDescriptor.status.equals(dd)
         }
     }
     
