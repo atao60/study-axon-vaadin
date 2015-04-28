@@ -1,6 +1,8 @@
 Sample Axon project with a "low XML diet"
 ======
 
+The purpose of this sample is to reduce as far as possible the number of configuration files using XML. The result is quite satisfactory: no more than one file, the one to switch Maven in Polyglot mode.
+
 This sample application is build upon the previous [xtend one](../xtend). It tries to reduce the use of XML configuration files with the help of:
 
 * Maven Polyglot with Groovy
@@ -22,7 +24,7 @@ Under [Eclipse Luna](https://projects.eclipse.org/releases/luna), [m2e](http://e
 
 With Maven used in command line, those pom.xml files can be removed, but the parent one (°).
 
->Note (°). At the moment, there is still a non-blocking issue with Maven multi-module project. With a parent project as module of the root project, the parent pom can't be a polyglot one. At least without using automatic translation with a tool like Maven Polyglot.
+>Note (°). At the moment, there is still a non-blocking issue with Maven multi-module project. With a parent project as module of the root project, the parent pom can't be a polyglot one. At least without using automatic translation with a tool like m2e-polyglot-poc.
 
 One way to install m2e-polyglot-poc under Eclipse is to use the update site:
          
@@ -84,34 +86,21 @@ Running
 
 #### Under a console ####
 
-##### Console application #####
+##### Headless application #####
 
 The packages must have been built as described above. 
 
-Go to the folder that contains the project *study-axon-vaadin-lowxmldiet-core* and run:
+Go to the sub-folder *oms-core* that contains the project *study-axon-vaadin-lowxmldiet-core* and run:
 
         java -jar target/oms-core-1.0.1-SNAPSHOT-standalone.jar
-    
-##### Web application #####
-
-Go to the folder that contains the project *study-axon-vaadin-lowxmldiet* and run:  
-
-        mvn install
-        cd oms-ui
-        mvn jetty:run-war
-    
-Once the launching is successful, check the application from a browser by opening:
-
-        http://localhost:7080/vaadin
-    
 
 #### Under Eclipse ####
 
 There is no need to build the packages before running the application as described below.
 
-##### Console application #####
+##### Headless application #####
 
-Under Eclipse, launch the console application:
+Create a launch configuration with:
 
         Run as > Java Application
 and:
@@ -122,7 +111,7 @@ and:
 
 ##### Web application #####
 
-Under Eclipse, launch the web application:
+Create a launch configuration with:
 
         Run as > Maven Build... 
 and:
@@ -136,7 +125,7 @@ and:
 
 >Notes.  
 
->- With the option "Resolve Workspace artifacts", no need to package the projects before running "jetty-run".
+>- With the option "Resolve Workspace artifacts", no need to install the package in the local repository before running "jetty-run".
 >- Under Eclipse, with Xtend, `jetty:run` needs more space. Then the memory arguments.
 >- Maven 3.3.1 under Eclipse requires the argument `-Dmaven.multiModuleProjectDirectory=`, even empty.
  

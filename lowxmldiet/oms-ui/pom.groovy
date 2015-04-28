@@ -11,10 +11,17 @@ project(modelVersion: '4.0.0')
 	description 'A low XML diet'
 	
 	build {
+        resources {
+            resource { directory 'src/main/resources' }
+            resource {
+                directory '../.'
+                includes { include 'README.md'  }
+            }
+        }
 		plugins {
 			plugin('org.eclipse.xtend:xtend-maven-plugin')
 			plugin('org.apache.maven.plugins:maven-enforcer-plugin')
-			
+
 			/* As "inplace" GWT compilation is made, ensure the widgetset
                directory is cleaned properly */
 			plugin('org.apache.maven.plugins:maven-clean-plugin')
@@ -91,8 +98,8 @@ project(modelVersion: '4.0.0')
 						version '${jetty.maven.version}'
 					}
 					*/
-					dependency('org.apache.commons:commons-dbcp2:2.0.1')
-					dependency('org.hsqldb:hsqldb:${hsqldb.version}')
+					/*dependency('org.apache.commons:commons-dbcp2:2.0.1')*/
+					/*dependency('org.hsqldb:hsqldb:${hsqldb.version}')*/
 				}
 			}
 		}

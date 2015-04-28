@@ -1,24 +1,23 @@
-project(modelVersion: '4.0.0')
-{
-	
+project(modelVersion: '4.0.0') {
+
 	groupId 'com.acme.oms.lowxmldiet'
 	artifactId 'oms-parent'
 	version '1.0.1-SNAPSHOT'
 	packaging 'pom'
-	
+
 	name 'Order Management System - Parent'
 	description 'Gather common parts for Order Management System'
-	
+
 	properties {
-		
+
 		/* Project parameters  */
-		
+
 		'web.port' '7080'
 		'xtend.outputDir' '${project.build.directory}/xtend-gen/main'
 		'xtend.testOutputDir' '${project.build.directory}/xtend-gen/test'
-		
+
 		/* JVM Management */
-		
+
 		'project.build.sourceEncoding' 'UTF-8'
 		'project.reporting.outputEncoding' 'UTF-8'
 
@@ -30,16 +29,16 @@ project(modelVersion: '4.0.0')
 		'maven.compiler.verbose' 'true'
 		'maven.compiler.fork' 'true'
 		'maven.compiler.optimize' 'true'
-		
+
 		/* Maven and Plugin Management */
 
 		'maven.minimal.version' '3.3.1' /* Maven 3.3.1 or above required for Polyglot */
-		
+
 		'jetty.maven.version' '9.2.10.v20150310'
-		
+
 		'vaadinVersion' '7.4.4'
 		'xtendVersion' '2.7.3' /* jnario-1.0.1 seems unable to use xtend 2.8.0 */
-		
+
 		'vaadin.plugin.version' '${vaadinVersion}'
 		'xtend.maven.version' '${xtendVersion}'
 		'enforcer.maven.version' '1.4'
@@ -55,9 +54,9 @@ project(modelVersion: '4.0.0')
 		'deploy.maven.version' '2.7'
 		'eclipse.maven.version' '2.9'
 		'shade.maven.version' '2.3'
-		
+
 		/* Dependency Management */
-		
+
 		'hamcrest.version' '1.3'
 		'hsqldb.version' '2.3.2'
 		'hibernate.version' '4.3.8.Final'
@@ -73,8 +72,8 @@ project(modelVersion: '4.0.0')
 		'vaadin.version' '${vaadinVersion}'
 		'xtend.version' '${xtendVersion}'
 		'spring.version' '4.1.6.RELEASE'
-		}
-	
+	}
+
 	build {
 		plugins {
 			plugin('org.codehaus.mojo:build-helper-maven-plugin')
@@ -83,30 +82,23 @@ project(modelVersion: '4.0.0')
 		pluginManagement {
 			plugins {
 				/* required to be able to put the xtend classes in a separate source folder */
-				plugin('org.codehaus.mojo:build-helper-maven-plugin:${build.helper.maven.version}')
-				{
+				plugin('org.codehaus.mojo:build-helper-maven-plugin:${build.helper.maven.version}') {
 					executions {
-						execution(id: 'get-maven-version')
-						{ 
-							goals { goal 'maven-version' }
-						}
-						execution(id: 'add-source', phase: 'generate-sources')
-						{
+						execution(id: 'get-maven-version') {  goals { goal 'maven-version'
+							} }
+						execution(id: 'add-source', phase: 'generate-sources') {
 							goals { goal 'add-source' }
-							configuration {
-								sources { source 'src/main/xtend' }
-							}
+							configuration { sources { source 'src/main/xtend'
+								} }
 						}
 						execution(id: 'add-test-source', phase: 'generate-test-sources') {
 							goals { goal 'add-test-source' }
-							configuration {
-								sources { source 'src/test/xtend' }
-							}
+							configuration { sources { source 'src/test/xtend'
+								} }
 						}
 					}
 				}
-				plugin('org.eclipse.xtend:xtend-maven-plugin:${xtend.maven.version}') 
-				{
+				plugin('org.eclipse.xtend:xtend-maven-plugin:${xtend.maven.version}') {
 					executions {
 						execution {
 							goals {
@@ -120,8 +112,7 @@ project(modelVersion: '4.0.0')
 						}
 					}
 				}
-				plugin('org.apache.maven.plugins:maven-enforcer-plugin:${enforcer.maven.version}')
-				{
+				plugin('org.apache.maven.plugins:maven-enforcer-plugin:${enforcer.maven.version}') {
 					executions {
 						execution(id: 'enforce-versions') {
 							goals { goal 'enforce' }
@@ -165,12 +156,11 @@ project(modelVersion: '4.0.0')
 				plugin('org.apache.maven.plugins:maven-resources-plugin:${resources.maven.version}')
 				plugin('org.apache.maven.plugins:maven-deploy-plugin:${deploy.maven.version}')
 				plugin('org.apache.maven.plugins:maven-war-plugin:${war.maven.version}') {
-					configuration {
-						failOnMissingWebXml 'false' // required for XML-less configuration
+					configuration { failOnMissingWebXml 'false' // required for XML-less configuration
 					}
 				}
 				plugin('org.apache.maven.plugins:maven-eclipse-plugin:${eclipse.maven.version}')
-				plugin('org.apache.maven.plugins:maven-shade-plugin:${shade.maven.version}') 
+				plugin('org.apache.maven.plugins:maven-shade-plugin:${shade.maven.version}')
 			}
 		}
 	}
@@ -178,14 +168,22 @@ project(modelVersion: '4.0.0')
 	dependencyManagement {
 		dependencies {
 			dependency('org.eclipse.xtend:org.eclipse.xtend.lib:${xtend.version}')
-			dependency('org.axonframework:axon-core:${axon.version}')
-			dependency('org.springframework:spring-context-support:${spring.version}')
-			{
+			dependency('org.axonframework:axon-core:${axon.version}') {
+				exclusions {
+					exclusion('xpp3:xpp3_min')
+					exclusion('xmlpull:xmlpull')
+				}
+			}
+			dependency('xpp3:xpp3_min:1.1.4c') {
+				exclusions {exclusion('xmlpull:xmlpull')}
+			}
+			dependency('xmlpull:xmlpull:1.1.3.1')
+			dependency('org.springframework:spring-context-support:${spring.version}') {
 				exclusions {exclusion('commons-logging:commons-logging')}
 			}
 			dependency('org.springframework:spring-aspects:${spring.version}')
 			dependency('org.aspectj:aspectjweaver:${aspectjweaver.version}')
-			dependency('cglib:cglib-nodep:${cglib.version}') // required by Axon-core and by Spring for @Configuration 
+			dependency('cglib:cglib-nodep:${cglib.version}') // required by Axon-core and by Spring for @Configuration
 			/* web */
 			dependency('com.vaadin:vaadin-server:${vaadin.version}')
 			dependency('com.vaadin:vaadin-client-compiled:${vaadin.version}')
@@ -211,8 +209,8 @@ project(modelVersion: '4.0.0')
 			dependency('junit:junit:${junit.version}:test')
 			dependency('org.springframework:spring-test:${spring.version}:test')
 			dependency('org.axonframework:axon-test:${axon.version}:test')
-			
+
 		}
 	}
-	
+
 }
