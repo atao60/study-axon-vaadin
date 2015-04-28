@@ -1,0 +1,125 @@
+package com.acme.oms.server.jetty;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.util.thread.QueuedThreadPool;
+import org.eclipse.jetty.webapp.WebAppContext;
+
+import bekkopen.jetty.ShutdownHandler;
+
+import com.acme.oms.ui.OrderWebServlet;
+import com.acme.oms.ui.OrderWebUI;
+
+/*
+ * Basé sur :
+ *      Embed your webapp into jetty7 example executable with Maven
+ *      http://open.bekk.no/embedded-jetty-7-webapp-executable-with-maven
+ * with code available here:
+ * 		bekkopen/jetty-pkg
+ * 		http://github.com/bekkopen/jetty-pkg/
+ * 
+ * 		Vaadin widgetset is in wrong location in jar (Embedded Jetty + Maven Assemble)
+ * 		http://stackoverflow.com/questions/28528940/vaadin-widgetset-is-in-wrong-location-in-jar-embedded-jetty-maven-assemble
+ * 
+ */
+public class OrderWebEmbeddedServer {
+
+    private static final int    DEFAULT_PORT         = 7080;
+    private static final String DEFAULT_CONTEXT_PATH = "/vaadin";
+    private static final String DEFAULT_SECRET       ="eb27fb2e61ed603363461b3b4e37e0a0";
+
+    private static final int    MAX_THREADS          = 128;
+    private static final int    WRONG_EXIT           = -1;
+    
+    public static void main(String[] args) throws Exception {
+        String key = (args.length < 1) ? Command.start.name() : args[0];
+        Optional<Command> oc = Optional.ofNullable( Command.find(key) );
+        Command command = oc.orElse(Command.usage);
+        command.getCommand().run();
+    }
+
+    static void start() {
+        try {
+            Server server = doCreateServer();
+
+            WebAppContext context = doCreateContext(server);
+
+            link(server, context);
+            server.start();
+            server.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private static void link(Server server, WebAppContext context) {
+        HandlerList handlers = new HandlerList();
+        handlers.addHandler(context);
+        handlers.addHandler(new ShutdownHandler(server, context, DEFAULT_SECRET));
+        server.setHandler(handlers);
+    }
+
+    private static Server doCreateServer() {
+        QueuedThreadPool threadPool = new QueuedThreadPool(MAX_THREADS);
+        Server server = new Server(threadPool);
+        server.setStopAtShutdown(true);
+        server.setStopTimeout(5000);
+
+        ServerConnector connector = new ServerConnector(server);
+        connector.setPort(DEFAULT_PORT);
+        connector.setIdleTimeout(30000);
+        server.setConnectors(new Connector[] { connector });
+        return server;
+    }
+
+    private static WebAppContext doCreateContext(final Server server) throws IOException {
+        // Get the war-file
+        URL location = OrderWebEmbeddedServer.class.getProtectionDomain().getCodeSource().getLocation();
+        String warFileUrl = cleanWrongUrl(location); 
+
+        // Add the warFile (this jar)
+        WebAppContext context = new WebAppContext(warFileUrl, DEFAULT_CONTEXT_PATH);
+        context.setServer(server);
+        
+        ServletHolder vaadinLoader = new ServletHolder(new OrderWebServlet());
+        vaadinLoader.setInitParameter("ui", OrderWebUI.class.getName());
+        vaadinLoader.setInitParameter("productionMode", String.valueOf(OrderWebServlet.productionMode));
+        context.addServlet(vaadinLoader, OrderWebServlet.urlPatterns);  // OK as urlPatterns contains only one url
+        return context;
+    }
+    
+    // why this exclamation mark?
+    private static String cleanWrongUrl(URL url ) {
+        return url.toExternalForm().replaceFirst("(?<!\\.(?:jar|war))!/$", "/");
+    }
+
+    static void stop() {
+        System.out.println(ShutdownHandler.shutdown(DEFAULT_PORT, DEFAULT_SECRET));
+    }
+
+    static void usage() {
+        String sep = System.lineSeparator() + "\t";
+        StringBuilder manual = new StringBuilder("Usage: java -jar <file.jar> [");
+        List<Command> commands = Arrays.asList(Command.values());
+        String options = commands.stream()
+                .map(c -> c.name())
+                .collect(Collectors.joining("|"));
+        manual.append(options).append("]").append(sep);
+        String instructions = commands.stream()
+                .map(e -> e.getMessage())
+                .collect(Collectors.joining(sep));
+        manual.append(instructions).append(System.lineSeparator());
+        System.exit(WRONG_EXIT);
+    }
+
+}

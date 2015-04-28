@@ -8,6 +8,11 @@ This repository aims to gather together a lot of *up-to-date* details spread out
 
 A policy of *Divide and rule* will be used: each main technology will be presented through a new project.
 
+Each project will provide working code out of the box. Any dummy learner knowing how to launch Maven should be able to run it, i.e. :
+
+- either with jetty:run,
+- or with a standalone jar file.
+
 Tools
 ------
 
@@ -60,6 +65,10 @@ It uses Xtend in place of Java. I should have named it the Low Code Diet!
 #### [LowXmlDiet project](lowxmldiet) ####
 
 This kind of diet is possible with the help of Maven Polyglot, Spring Java Configuration, ...
+
+#### [Standalone project](standalone) ####
+
+With the help of *spring-boot-maven-plugin*, create a runable war is a piece of cake.
 
 Checkout
 ------
