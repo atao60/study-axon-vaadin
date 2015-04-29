@@ -14,8 +14,7 @@ Icing on the cake: as a main class is required, it can be used to launch the app
 Documentation
 -------
 
-Why and how to use Jetty in mission-critical production
-http://johannesbrodwall.com/2010/03/08/why-and-how-to-use-jetty-in-mission-critical-production/
+[Why and how to use Jetty in mission-critical production](http://johannesbrodwall.com/2010/03/08/why-and-how-to-use-jetty-in-mission-critical-production/)
 
 
 Transformation
