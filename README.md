@@ -4,19 +4,22 @@ Sample Axon projects
 Rational
 -----
 
-This repository aims to gather together a lot of *up-to-date* details spread out on the Internet about technologies from [Axon Framework](http://www.axonframework.org/) to Maven Polyglot through [Xtend](https://eclipse.org/xtend/) and other ones.
+This repository aims to gather together a lot of *up-to-date* details spread out on the Internet about:
 
-A policy of *Divide and rule* will be used: each main technology will be presented through a new project.
+- frameworks: from [Axon](http://www.axonframework.org/) to Maven Polyglot through [Xtend](https://eclipse.org/xtend/) and other ones;
+- miscellaneous know-how: xml free configurations, runnable war, ...
 
-Each project will provide working code out of the box. Any dummy learner knowing how to launch Maven should be able to run it, i.e. :
+A policy of *Divide and rule* will be used: each main technology or configuration will be presented through a new project.
 
-- either with jetty:run,
-- or with a standalone jar file.
+Each project will provide working code out of the box. No need to know anything other than how to launch Maven should be necessary to run it, i.e.:
+
+- either with Maven and jetty:run,
+- or with Java and a standalone jar or war file.
 
 Tools
 ------
 
-* JDK 1.7/1.8
+* JDK 1.7 or 1.8
 
 * [Maven](https://maven.apache.org/) (3.2.1 or 3.3.1)
 
@@ -31,6 +34,8 @@ Tools
 * WikiText 2.3.2
 
 * ...
+
+How to install them is out of the scope of this document.
 
 Key Features
 -----
@@ -69,6 +74,12 @@ This kind of diet is possible with the help of Maven Polyglot, Spring Java Confi
 #### [Standalone project](standalone) ####
 
 With the help of *spring-boot-maven-plugin*, create a runable war is a piece of cake.
+
+#### Frendly project ####
+
+Various trics to get a better experience: external configuration, splash screen, shrunken war file, ...
+
+*Work in progress*
 
 Checkout
 ------
