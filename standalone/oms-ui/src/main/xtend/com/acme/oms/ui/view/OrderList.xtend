@@ -27,7 +27,7 @@ class OrderList extends Table {
     }
 
     def initDataLayout() {
-        visibleColumns = DataDescriptor.names // as Object[]
+        visibleColumns = DataDescriptor.names as Object[]
         columnHeaders = DataDescriptor.labels
         sort(COLUMN_SORTERS.keySet.toArray, Booleans.toArray(COLUMN_SORTERS.values))
     }
